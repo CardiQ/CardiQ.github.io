@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="q1 指令地址为何如此？2开始是字地址，但为何是10位（器件输入要求）-见报告q2硬布线URET是什么q3数据存储器的输入地址为何同q1q4是否RDin多路选择11也是pc+4：不重要q5jalr的ALU_OP是5吗：是q6ecall指令从何处来：最后选两个特定（如asm文件）寄存器输出并暂停 开始CCAB：添加填表，改硬布线，连数据通路——测试，剩下三个q1rs1rs2used需要吗 开始理想流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2022/10/18/hello-world/index.html">
+<meta property="og:title" content="CurriculumDesign-RISCV">
+<meta property="og:url" content="http://example.com/2022/10/25/CurriculumDesign-RISCV/index.html">
 <meta property="og:site_name" content="CardiQ">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="q1 指令地址为何如此？2开始是字地址，但为何是10位（器件输入要求）-见报告q2硬布线URET是什么q3数据存储器的输入地址为何同q1q4是否RDin多路选择11也是pc+4：不重要q5jalr的ALU_OP是5吗：是q6ecall指令从何处来：最后选两个特定（如asm文件）寄存器输出并暂停 开始CCAB：添加填表，改硬布线，连数据通路——测试，剩下三个q1rs1rs2used需要吗 开始理想流">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-10-18T02:53:14.984Z">
-<meta property="article:modified_time" content="2022-10-18T02:53:14.984Z">
+<meta property="article:published_time" content="2022-10-24T16:20:55.000Z">
+<meta property="article:modified_time" content="2022-10-24T16:21:23.697Z">
 <meta property="article:author" content="cardiQ">
 <meta property="article:tag" content="C&#x2F;C++ Java Android React js taro">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/10/18/hello-world/">
+<link rel="canonical" href="http://example.com/2022/10/25/CurriculumDesign-RISCV/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Hello World | CardiQ</title>
+  <title>CurriculumDesign-RISCV | CardiQ</title>
   
 
 
@@ -152,7 +152,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/CurriculumDesign-RISCV/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -165,7 +165,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          CurriculumDesign-RISCV
         </h1>
 
         <div class="post-meta">
@@ -174,8 +174,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-10-18 10:53:14" itemprop="dateCreated datePublished" datetime="2022-10-18T10:53:14+08:00">2022-10-18</time>
+              <time title="Created: 2022-10-25 00:20:55 / Modified: 00:21:23" itemprop="dateCreated datePublished" datetime="2022-10-25T00:20:55+08:00">2022-10-25</time>
             </span>
 
           
@@ -189,19 +190,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p>q1 指令地址为何如此？2开始是字地址，但为何是10位（器件输入要求）-见报告<br>q2硬布线URET是什么<br>q3数据存储器的输入地址为何同q1<br>q4是否RDin多路选择11也是pc+4：不重要<br>q5jalr的ALU_OP是5吗：是<br>q6ecall指令从何处来：最后选两个特定（如asm文件）寄存器输出并暂停</p>
+<p>开始CCAB：<br>添加填表，改硬布线，连数据通路——测试，剩下三个<br>q1rs1rs2used需要吗</p>
+<p>开始理想流水线：<br>需要halt和rst；需要clk；需要en；<br>为什么指令不走:IF.PC线没连上<br>R2＆MDin出问题了：是第五节拍开始到第九节拍执行的指令最先出了问题，是rd使用了错误的隧道造成的<br>ecall出问题：去掉ecall的halt</p>
+<p>开始气泡流水线，要求先写后读-寄存器资源、插入气泡-数据相关、清空误取指令-分支（EX或ID两种）<br>写错了跳转地址的隧道名：不再是J、B各一个，而是已经在EX段合并为了一个<br>stall出错-&gt;忘了&#x3D;0要取反<br>线相交<br>q1冲突计数和气泡计数</p>
+<p>开始重定向流水线：<br>q1为什么模板设置与非门<br>clk2忘连IF&#x2F;ID.flush,clk4连错brenchtaken<br>处理逻辑内部分线器01接反<br>ALUResult位置接后了一个节拍<br>q2选择EX段放弃ID段的操作</p>
+<p>开始单周期单级中断：模板不对<br>q1暂未逻辑与中断屏蔽位：任务书可以忽略<br>q2IE改设计<br>uret改设计-和slli某些数据冲突但不能用ecall<br>q3中断电路的CLRx作用未知-返回清空<br>给IntRequest和CLI间加了一个节拍延迟（寄存器）后可以正常进入中断，但不能正常返回<br>改了进入中断服务和返回的电路<br>q4由于报错，总是晚一拍，提前一拍发动中断<br>RDin没输入；由报错结果开始找，发现减去4后7d0这个值在第一条指令-不知为何，改回上升沿就好了<br>uret遇阻；似乎是保存断点时晚了一拍-寄存器做延迟<br>q5第几条指令中断是什么意思<br>q6 IR2和IR3反了<br>跳转后发现没有关中断，uret寄存器输入从1常量改为uret</p>
+<p>开始单周期多级中断<br>硬件堆栈：多路选择器实现，为0下行入栈为1上行出栈，核心为寄存器；用于存断点<br>uret操纵寄存器更换比较对象的含义为将uret后的中断级别降为最低：0<br>q1csrrsi和csrrci的pdf官方用途<br>改进了开关中断，因为要求开关中断和指令也有关，但最早和最晚的时机不变<br>q2面向测试集加了中断测试信号？条件如此复杂可行吗-后已解决<br>q3中断的不足之处：延迟了一个节拍&#x2F;一个指令去处理-后已解决</p>
+<p>开始流水中断<br>添加了uret改了ecall并将uret传递到EX段……对应任务书修改<br>流水线中断有问题，3108处为何不跳转？3108处bne指令的不相等条件不满足，本来循环左移x8每次四位，但开局就是0；30f0的数据冲突未按重定位处理—-&gt;要先写后读，又改回下降沿—-&gt;加非门即可先读后写<br>单级中断需要改：uret不可一次清空所有–改后又加触发器，否则intAout是同时有的最优先级中断而非当下的</p>
+<p>发生重大问题：<br>必须按所给发生器发生测试信号,误打误撞过关详见副本(3)<br>周期快了一拍–挪到PC寄存器前，EPC前的寄存器也要删掉<br>改了uret的关灯动作-分别关、触发改回官方、跳转地址交换回去<br>其中TQ触发器很关键，作用见图标注<br>–流水中断的节拍改成单级一致；此处发现uret同步STI-一拍-关CLI同步IE变为1有问题开中断刚好错开中断信号，改为uret一拍STI<br>–多级中断更改多处如单级中断，加上多级的优先级判断和堆栈<br>uret关中断已改为关最高级的，单级中是关最早的<br>开中断执行出错，csrrci和csrrsi地位等同中断发出成功和uret指令，一发出下一秒就翻转中断信号，防止中断排队时的两节拍延迟，正常只要一节拍。CLI、CSI则是正常流程单级也有的开关中断。<br>改为一响应就清空中断请求否则将打断保存在栈中的进程又跳转中断开头从头执行中断</p>
+<p>开始动态分支预测：<br>#是否要将分支改到ID执行–算了<br>将halt改回有效使程序停下，可计数周期<br>看存储实验Cache设计：<br>–q1改了计数器c*，每次计数加0改为加1<br>–q2BlkReady用处未知，暂时删除<br>#改一些名称易读，pdf红色标签<br>@209拍跳转信号为1@194处出错应EX7c实为54<br>–2295第一次改2183第二次初值统一为2，2187为3，2183……最后发现时间总在beq和bne慢，逐步观察发现beq和bne即最终排序阶段只有这两个指令要用由于替换策略LRU的缺点总是替换同一个东西来回替换，几乎没产生作用，于是在mayb情况下换为随机数</p>
+<p>开始单周期CPU上板：看群＆问，看l转v文件夹5+1ppt<br>–看文档和如下经验转Verilog<br>1.寄存器初始化的问题，所有寄存器要初始化。<br>2.寄存器使能端，preset的问题。这些要调成0。–调了<br>3.移位器的算数右移问题。不仅要改运算符，还要改成有符号数。–按012改了，但cpu调用参数没改<br>4.减法器的实现有问题，要修改。–改成了求反加1<br>5.RAM的数据位宽有问题。–没发现<br>–转Verilog时RegFile显示无法转HDL，先删除，方法Verilog代码植入（未知如何添加）或logisim参照资料写<br>–顶层文件似乎没生成-&gt;按群经验修改分线器生成<br>改动处<em>2详见typora<br>–自己写了一个寄存器堆，主要零寄存器始终为0<br>–shell.xdc第一行的不知道什么东西<br>set_property -dict { PACKAGE_PIN J15   IOSTANDARD LVCMOS33 } [get_ports { FPGA_INPUT_PIN_0[0] }];<br>–时钟是连系统时钟的（E3）<br>–排报错warning，搞好约束文档保存并加载进来，两次模拟，生成比特流，选硬件manager加载<br>–上板-&gt;logisim中对，只有两个0-&gt;换了seg和na全为1不变-&gt;问了问题是频率改为200000-&gt;张俊逸的问题-&gt;FPGADigit是一个显示模块充满未知<br>&#x2F;&#x2F;过各流水线CCAB，重定向部分LUI加接loaduse<br>&#x2F;&#x2F;多级中断的亮灯问题、流水线周期数问题<br>q1为何重定向的多路选择如此安排<br>q2周期数的时候改为EX.halt；GO的时候改为halt；</em>多级中断灯<br>–now：为何没暂停，添加CCAB为何“8”出问题，切换频率、切换显示未实现，*算一下板的赫兹；</p>
+<p>课设团队c:circuit<br>初始详见视频<br>git拉取遇到麻烦<br>#halt不用管？；c1中MDin是否该连上？；<br>金币和车两个方面<br>软件以中断服务程序实现<br>两个cpu，同时，有许多重复赋值是因为立即数操作数只有12位eg:addi等等–&gt;是否要采用3&#x2F;4个CPU √<br>#要使小车命&gt;0</p>
 
     </div>
 
@@ -216,11 +216,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/10/18/React-js-taro%E5%AE%9E%E7%8E%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/" rel="next" title="React+js+taro实现小程序俄罗斯方块">
-      React+js+taro实现小程序俄罗斯方块 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/10/18/React-js-taro%E5%AE%9E%E7%8E%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/" rel="prev" title="React+js+taro实现小程序俄罗斯方块">
+      <i class="fa fa-chevron-left"></i> React+js+taro实现小程序俄罗斯方块
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -279,7 +279,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -1,357 +1,487 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
-
+<html lang="ch">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="记录日常学习，贡献小绿点">
-    <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png">
-    <link rel="alternate" type="application/atom+xml" title="CardiQ" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="记录日常学习，贡献小绿点">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CardiQ">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="CardiQ">
+<meta property="og:description" content="记录日常学习，贡献小绿点">
+<meta property="og:locale">
+<meta property="article:author" content="cardiQ">
+<meta property="article:tag" content="C&#x2F;C++ Java Android React js taro">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'ch'
+  };
+</script>
+
+  <title>CardiQ</title>
+  
 
 
 
-    </title>
-
-    <link rel="canonical" href="http://example.com/">
-
-    <!-- Bootstrap Core CSS -->
-
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
 
-    <!-- Custom CSS -->
 
-    <link rel="stylesheet" href="/css/blog-style.css">
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    <!-- Pygments Github CSS -->
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
-    <link rel="stylesheet" href="/css/syntax.css">
-
-    <meta name="generator" content="Hexo 6.3.0">
 </head>
 
-<style>
-    header.intro-header {
-        background-image: url('https://s1.ax1x.com/2022/10/18/xsSdtH.jpg')
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CardiQ</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人学习日志/项目记录/引用文档</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/CurriculumDesign-RISCV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cardiQ">
+      <meta itemprop="description" content="记录日常学习，贡献小绿点">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CardiQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/25/CurriculumDesign-RISCV/" class="post-title-link" itemprop="url">CurriculumDesign-RISCV</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-10-25 00:20:55 / Modified: 00:21:23" itemprop="dateCreated datePublished" datetime="2022-10-25T00:20:55+08:00">2022-10-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>q1 指令地址为何如此？2开始是字地址，但为何是10位（器件输入要求）-见报告<br>q2硬布线URET是什么<br>q3数据存储器的输入地址为何同q1<br>q4是否RDin多路选择11也是pc+4：不重要<br>q5jalr的ALU_OP是5吗：是<br>q6ecall指令从何处来：最后选两个特定（如asm文件）寄存器输出并暂停</p>
+<p>开始CCAB：<br>添加填表，改硬布线，连数据通路——测试，剩下三个<br>q1rs1rs2used需要吗</p>
+<p>开始理想流水线：<br>需要halt和rst；需要clk；需要en；<br>为什么指令不走:IF.PC线没连上<br>R2＆MDin出问题了：是第五节拍开始到第九节拍执行的指令最先出了问题，是rd使用了错误的隧道造成的<br>ecall出问题：去掉ecall的halt</p>
+<p>开始气泡流水线，要求先写后读-寄存器资源、插入气泡-数据相关、清空误取指令-分支（EX或ID两种）<br>写错了跳转地址的隧道名：不再是J、B各一个，而是已经在EX段合并为了一个<br>stall出错-&gt;忘了&#x3D;0要取反<br>线相交<br>q1冲突计数和气泡计数</p>
+<p>开始重定向流水线：<br>q1为什么模板设置与非门<br>clk2忘连IF&#x2F;ID.flush,clk4连错brenchtaken<br>处理逻辑内部分线器01接反<br>ALUResult位置接后了一个节拍<br>q2选择EX段放弃ID段的操作</p>
+<p>开始单周期单级中断：模板不对<br>q1暂未逻辑与中断屏蔽位：任务书可以忽略<br>q2IE改设计<br>uret改设计-和slli某些数据冲突但不能用ecall<br>q3中断电路的CLRx作用未知-返回清空<br>给IntRequest和CLI间加了一个节拍延迟（寄存器）后可以正常进入中断，但不能正常返回<br>改了进入中断服务和返回的电路<br>q4由于报错，总是晚一拍，提前一拍发动中断<br>RDin没输入；由报错结果开始找，发现减去4后7d0这个值在第一条指令-不知为何，改回上升沿就好了<br>uret遇阻；似乎是保存断点时晚了一拍-寄存器做延迟<br>q5第几条指令中断是什么意思<br>q6 IR2和IR3反了<br>跳转后发现没有关中断，uret寄存器输入从1常量改为uret</p>
+<p>开始单周期多级中断<br>硬件堆栈：多路选择器实现，为0下行入栈为1上行出栈，核心为寄存器；用于存断点<br>uret操纵寄存器更换比较对象的含义为将uret后的中断级别降为最低：0<br>q1csrrsi和csrrci的pdf官方用途<br>改进了开关中断，因为要求开关中断和指令也有关，但最早和最晚的时机不变<br>q2面向测试集加了中断测试信号？条件如此复杂可行吗-后已解决<br>q3中断的不足之处：延迟了一个节拍&#x2F;一个指令去处理-后已解决</p>
+<p>开始流水中断<br>添加了uret改了ecall并将uret传递到EX段……对应任务书修改<br>流水线中断有问题，3108处为何不跳转？3108处bne指令的不相等条件不满足，本来循环左移x8每次四位，但开局就是0；30f0的数据冲突未按重定位处理—-&gt;要先写后读，又改回下降沿—-&gt;加非门即可先读后写<br>单级中断需要改：uret不可一次清空所有–改后又加触发器，否则intAout是同时有的最优先级中断而非当下的</p>
+<p>发生重大问题：<br>必须按所给发生器发生测试信号,误打误撞过关详见副本(3)<br>周期快了一拍–挪到PC寄存器前，EPC前的寄存器也要删掉<br>改了uret的关灯动作-分别关、触发改回官方、跳转地址交换回去<br>其中TQ触发器很关键，作用见图标注<br>–流水中断的节拍改成单级一致；此处发现uret同步STI-一拍-关CLI同步IE变为1有问题开中断刚好错开中断信号，改为uret一拍STI<br>–多级中断更改多处如单级中断，加上多级的优先级判断和堆栈<br>uret关中断已改为关最高级的，单级中是关最早的<br>开中断执行出错，csrrci和csrrsi地位等同中断发出成功和uret指令，一发出下一秒就翻转中断信号，防止中断排队时的两节拍延迟，正常只要一节拍。CLI、CSI则是正常流程单级也有的开关中断。<br>改为一响应就清空中断请求否则将打断保存在栈中的进程又跳转中断开头从头执行中断</p>
+<p>开始动态分支预测：<br>#是否要将分支改到ID执行–算了<br>将halt改回有效使程序停下，可计数周期<br>看存储实验Cache设计：<br>–q1改了计数器c*，每次计数加0改为加1<br>–q2BlkReady用处未知，暂时删除<br>#改一些名称易读，pdf红色标签<br>@209拍跳转信号为1@194处出错应EX7c实为54<br>–2295第一次改2183第二次初值统一为2，2187为3，2183……最后发现时间总在beq和bne慢，逐步观察发现beq和bne即最终排序阶段只有这两个指令要用由于替换策略LRU的缺点总是替换同一个东西来回替换，几乎没产生作用，于是在mayb情况下换为随机数</p>
+<p>开始单周期CPU上板：看群＆问，看l转v文件夹5+1ppt<br>–看文档和如下经验转Verilog<br>1.寄存器初始化的问题，所有寄存器要初始化。<br>2.寄存器使能端，preset的问题。这些要调成0。–调了<br>3.移位器的算数右移问题。不仅要改运算符，还要改成有符号数。–按012改了，但cpu调用参数没改<br>4.减法器的实现有问题，要修改。–改成了求反加1<br>5.RAM的数据位宽有问题。–没发现<br>–转Verilog时RegFile显示无法转HDL，先删除，方法Verilog代码植入（未知如何添加）或logisim参照资料写<br>–顶层文件似乎没生成-&gt;按群经验修改分线器生成<br>改动处<em>2详见typora<br>–自己写了一个寄存器堆，主要零寄存器始终为0<br>–shell.xdc第一行的不知道什么东西<br>set_property -dict { PACKAGE_PIN J15   IOSTANDARD LVCMOS33 } [get_ports { FPGA_INPUT_PIN_0[0] }];<br>–时钟是连系统时钟的（E3）<br>–排报错warning，搞好约束文档保存并加载进来，两次模拟，生成比特流，选硬件manager加载<br>–上板-&gt;logisim中对，只有两个0-&gt;换了seg和na全为1不变-&gt;问了问题是频率改为200000-&gt;张俊逸的问题-&gt;FPGADigit是一个显示模块充满未知<br>&#x2F;&#x2F;过各流水线CCAB，重定向部分LUI加接loaduse<br>&#x2F;&#x2F;多级中断的亮灯问题、流水线周期数问题<br>q1为何重定向的多路选择如此安排<br>q2周期数的时候改为EX.halt；GO的时候改为halt；</em>多级中断灯<br>–now：为何没暂停，添加CCAB为何“8”出问题，切换频率、切换显示未实现，*算一下板的赫兹；</p>
+<p>课设团队c:circuit<br>初始详见视频<br>git拉取遇到麻烦<br>#halt不用管？；c1中MDin是否该连上？；<br>金币和车两个方面<br>软件以中断服务程序实现<br>两个cpu，同时，有许多重复赋值是因为立即数操作数只有12位eg:addi等等–&gt;是否要采用3&#x2F;4个CPU √<br>#要使小车命&gt;0</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/React-js-taro%E5%AE%9E%E7%8E%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cardiQ">
+      <meta itemprop="description" content="记录日常学习，贡献小绿点">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CardiQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/18/React-js-taro%E5%AE%9E%E7%8E%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/" class="post-title-link" itemprop="url">React+js+taro实现小程序俄罗斯方块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-10-18 21:01:32 / Modified: 22:14:11" itemprop="dateCreated datePublished" datetime="2022-10-18T21:01:32+08:00">2022-10-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">个人学习日志</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">项目记录</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>part1 展示具体功能</p>
+<p>俄罗斯方块；记录最高分；</p>
+<p>不足之处：没有登录和切换用户，因为还没连数据库，现在就先交了，之后可能会用Java写个后端试试用Tomcat连接数据库</p>
+<p>part2</p>
+<p>第一周先简单地学习了一下项目文档所给的小程序教程，学到了小程序是渲染线程和脚本线程互斥的；缺少DOM API和BOM API；但似乎和前端差别不大，由于自身水平有限，决定还是使用先前有过一些经验的react框架开发，并用taro——开放式跨端跨框架解决方案将其移植到字节跳动小程序。开发主要用JavaScript和scss样式。</p>
+<p>项目结构同react结构，不同的是dist文件夹是taro由react框架源码打包的小程序代码，开发主要在src文件夹进行。src文件夹中，asset是放置图片的资源文件夹；font是放置字体的资源文件夹；app三个文件是顶层运行文件，不过最后是在index中渲染的，开发主要是在另一个组件Tetris进行，没有对app进行改动。</p>
+<p>接下来就是具体的开发，整个开发过程就是先构建舞台，然后渲染方块，然后给方块添加运动和运动限制如不能重叠不能出舞台，最后使方块自动下降并消除计分。</p>
+<p>首先是两个工具类，放在外面，gamehelpers文件存储一些基础工具，一个用于初始化舞台，一个用于检测碰撞（防止方块出舞台、防止俄罗斯方块叠加）；tetrominos文件存储一个包含所有俄罗斯方块形状颜色的数组和一个在这个数组内随机产生俄罗斯方块返回给调用者的函数。</p>
+<p>pages里面只有index一个页面，将Tetris这个大组件放在其中渲染，主要开发在Tetris中进行。开发中主要依靠react的hook特性。下面从Tetris作为主体延伸介绍其他用到的组件，hook单独介绍（因为hook的调用在各个组件的事件中没有显式地在Tetris中发挥作用）。</p>
+<p>一些函数，功能是……主要框架是，对应部分为……【逐个介绍组件文件】特别的是，没有对每个组件都建立一个跟随样式，仅对各按钮这样做了——将所有按钮的样式统一在一个scss文件中管理；后来对其他组件的样式转为样式化的组件进行实现，也就是这个StyledComponents，components下的styles文件夹。</p>
+<p>下面是hooks</p>
+<p>开发过程是找了很多教程进行学习，特别是react相关的内容；但react到小程序仍有距离，而且有出现由于知识太少不了解而出现的莫名其妙的错误以及小程序不支持的情况。经过学习和调试，逐步完成了相关基本要求。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/18/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cardiQ">
+      <meta itemprop="description" content="记录日常学习，贡献小绿点">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CardiQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/18/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-18 10:53:14" itemprop="dateCreated datePublished" datetime="2022-10-18T10:53:14+08:00">2022-10-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-</style>
-<!-- hack iOS CSS :active style -->
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
-<body ontouchstart="" class="animated fadeIn">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
-" data-ishome="true">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand animated pulse" href="/">
-                    <span class="brand-logo">
-                        CardiQ
-                    </span>
-                    's Blog
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-            <!-- /.navbar-collapse -->
-            <div id="huxblog_navbar">
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="/">Home</a>
-                        </li>
-
-
-
-
-
-
-
-
-                    </ul>
-                </div>
-            </div>
         </div>
-        <!-- /.container -->
-    </nav>
-    <script>
-        // Drop Bootstarp low-performance Navbar
-        // Use customize navbar with high-quality material design animation
-        // in high-perf jank-free CSS3 implementation
-        //    var $body   = document.body;
-        var $toggle = document.querySelector('.navbar-toggle');
-        var $navbar = document.querySelector('#huxblog_navbar');
-        var $collapse = document.querySelector('.navbar-collapse');
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-        $toggle.addEventListener('click', handleMagic)
-        function handleMagic(e) {
-            if ($navbar.className.indexOf('in') > 0) {
-                // CLOSE
-                $navbar.className = " ";
-                // wait until animation end.
-                setTimeout(function () {
-                    // prevent frequently toggle
-                    if ($navbar.className.indexOf('in') < 0) {
-                        $collapse.style.height = "0px"
-                    }
-                }, 400)
-            } else {
-                // OPEN
-                $collapse.style.height = "auto"
-                $navbar.className += " in";
-            }
-        }
-    </script>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-    <!-- Main Content -->
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cardiQ</p>
+  <div class="site-description" itemprop="description">记录日常学习，贡献小绿点</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
 
 
-    <style>
-        .custom-haojen-container .post-preview:nth-of-type(1),
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-            text-align: center;
-            background-repeat: no-repeat;
-            border-radius: 3px;
-            background-size: cover;
-            padding: 0;
-            height: 300px;
-            display: table;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.16);
-        }
 
-        /* 去掉诗歌的背景图片
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-            background-image: none !important;
-            background-color: rgba(255, 248, 220, 0.5);
-        } */
+      </div>
 
-        .custom-haojen-container .post-preview:nth-child(1) h2,
-        .custom-haojen-container .post-preview:nth-child(1) .post-meta,
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            text-shadow: 0 0 40px rgba(0, 0, 0, 1);
-            letter-spacing: 1px;
-            color: #fff;
-            margin-top: 0;
-            padding-left: 60px;
-            padding-right: 60px;
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) .post-meta {
-            font-size: .9em;
-            font-weight: 300;
-            margin-top: 0;
-        }
-
-        .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle {
-            letter-spacing: 6px;
-            font-size: 18px;
-            font-family: unset;
-            font-weight: 400;
-            color: rgba(0, 0, 0, .75)
-        }
-
-        /*不显示摘要*/
-        .custom-haojen-container .post-preview:nth-child(1) .post-content-preview {
-            display: none
-        }
-
-        /*只第一个显示背景图片*/
-        /* .custom-haojen-container .post-preview:not(:nth-child(1)) {
-            background-image: none !important;
-        } */
-
-        /*第一个分界线去掉*/
-        .custom-haojen-container hr:nth-of-type(1) {
-            display: none;
-        }
-
-        /*主题*/
-        .custom-haojen-container .post-preview:nth-of-type(1)>a {
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        /*诗词标题*/
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-            font-size: 35px;
-            font-family: STKaiti;
-            color: rgba(0, 0, 0, .8);
-        }
-
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta {
-            color: #0e2231;
-        }
-
-        @media (max-width: 768px) {
-            .custom-haojen-container .post-preview:nth-child(1) {
-                height: 240px;
-            }
-
-            .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-                font-size: 28px !important;
-                margin-top: 0;
-            }
-
-            .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-                font-size: 18px;
-                font-weight: 400;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .custom-haojen-container .post-preview:nth-of-type(1)>a {
-                padding: 20px
-            }
-        }
-
-        /*手机屏幕*/
-        @media (max-width: 400px) {
-            .custom-haojen-container .post-preview:nth-child(1) {
-                height: 195px;
-            }
-
-            .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-                font-size: 20px !important;
-            }
-
-            .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-                font-size: 16px;
-            }
-
-            .custom-haojen-container .post-preview:nth-child(1) a {
-                padding: 30px 20px;
-            }
-        }
-    </style>
-
-    <!-- Page Header -->
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-        <div class="row">
-            <header class="intro-header">
-                <div class="container">
-                    <div class="site-heading text-center">
-                        <div class="about-me">
-                            <!--移动端头部显示-->
-                            <img src="" />
-                            <h5><a href="/about/">cardiQ</a></h5>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </div>
     </div>
-    <!-- Main Content -->
-    <div class="container custom-haojen-container">
-        <!-- Post Container -->
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-                <!-- Main Content -->
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
 
+      </div>
+    </main>
 
-                <div class="post-preview " style="background-image: url('')">
-                    <a href="/2022/10/18/React-js-taro实现小程序俄罗斯方块/">
-                        <h2 class="post-title">
-                            React+js+taro实现小程序俄罗斯方块
-                        </h2>
-                        <p class="post-meta">
-                            <i class="fa fa-calendar" aria-hidden="true"></i> 2022-10-18
-                        </p>
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
-                        <div class="post-content-preview">
-                            <p>
-                                part1 展示具体功能
-                                俄罗斯方块；记录最高分；
-                                不足之处：没有登录和切换用户，因为还没连数据库，现在就先交了，之后可能会用Java写个后端试试用Tomcat连接数据库
-                                part2
-                                第一周先简单地学习了一下项目文档所给的小程序教程，学到了小程序是渲染线程和脚本线程互斥的；缺少DOM API和B..
-                            </p>
-                        </div>
-                    </a>
+        
 
-                </div>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cardiQ</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
 
-                <hr>
-
-
-
-                <div class="post-preview " style="background-image: url('')">
-                    <a href="/2022/10/18/hello-world/">
-                        <h2 class="post-title">
-                            Hello World
-                        </h2>
-                        <p class="post-meta">
-                            <i class="fa fa-calendar" aria-hidden="true"></i> 2022-10-18
-                        </p>
-
-                        <div class="post-content-preview">
-                            <p>
-                                Welcome to Hexo! This is your very first post. Check documentation for more info. If you
-                                get any problems when using Hexo, you can find the answer i..
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-
-                <hr>
-
-
-
-
-                <!-- 翻页 pager -->
-
-                <ul class="pager">
-
-
-                </ul>
-
-
-            </div>
-            <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-                <!-- About Me -->
-                <section class="visible-md visible-lg" style="padding: 0 18px">
-                    <div class="short-about">
-                        <!--侧边栏头像-->
-
-                        <h5><a href="/about/">cardiQ</a></h5>
-
-                        <hr>
-                        <!-- SNS Link 社交 -->
-                        <ul class="list-inline">
+        
 
 
 
@@ -360,131 +490,47 @@
 
 
 
-
-
-
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Featured Tags  标签 -->
-
-
-
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                    <br>
-                    <ul class="list-inline text-center">
-
-
-
-
-
-
-
-
-
-
-
-
-                    </ul>
-                    <p class="copyright text-muted">
-                        Copyright &copy; CardiQ 2022
-                        <br>
-                        <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span
-                                id="busuanzi_value_site_pv"></span> Times</span>
-                        <br>
-                        Theme by <a target="_blank" rel="noopener" href="https://haojen.github.io/">Haojen Ma</a>
-                    </p>
-
-                </div>
-            </div>
-        </div>
+      </div>
     </footer>
+  </div>
 
-    <!-- jQuery -->
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-    <script src="/js/jquery.min.js"></script>
+<script src="/js/utils.js"></script>
 
-
-    <!-- Bootstrap Core JavaScript -->
-
-    <script src="/js/bootstrap.min.js"></script>
-
-
-    <!-- Custom Theme JavaScript -->
-
-    <script src="/js/blog.js"></script>
+<script src="/js/motion.js"></script>
 
 
-    <!-- async load function -->
-    <script>
-        function async(u, c) {
-            var d = document, t = 'script',
-                o = d.createElement(t),
-                s = d.getElementsByTagName(t)[0];
-            o.src = u;
-            if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-            s.parentNode.insertBefore(o, s);
-        }
-    </script>
+<script src="/js/schemes/muse.js"></script>
 
-    <!-- jquery.tagcloud.js -->
-    <script>
-        // only load tagcloud.js in tag.html
-        if ($('#tag_cloud').length !== 0) {
-            async("http://example.com/js/jquery.tagcloud.js", function () {
-                $.fn.tagcloud.defaults = {
-                    //size: {start: 1, end: 1, unit: 'em'},
-                    color: { start: '#bbbbee', end: '#0085a1' },
-                };
-                $('#tag_cloud a').tagcloud();
-            })
-        }
-    </script>
 
-    <!--fastClick.js -->
-    <script>
-        async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
-            var $nav = document.querySelector("nav");
-            if ($nav) FastClick.attach($nav);
-        })
-    </script>
+<script src="/js/next-boot.js"></script>
 
 
 
-    <!-- Google Analytics -->
+
+  
 
 
 
-    <!-- Baidu Tongji -->
 
 
-    <!-- swiftype -->
-    <script type="text/javascript">
-            (function (w, d, t, u, n, s, e) {
-                w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-                    (w[n].q = w[n].q || []).push(arguments);
-                }; s = d.createElement(t);
-                e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-            })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
 
-        _st('install', '', '2.0.0');
-    </script>
 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <!--wechat title img-->
-    <img class="wechat-title-img" src="">
+
+
+
+
+
+
+
+  
+
+  
+
 </body>
-
 </html>
