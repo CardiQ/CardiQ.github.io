@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #866bff;
+  background: #34ac11;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2288,4 +2288,14 @@ embed {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+body {
+  background-image: url("../images/bkg.jpg"), linear-gradient(60deg, rgba(255,165,150,0.5) 5%, rgba(0,228,255,0.35)), url("https://upimage.alexhchu.com/2020/10/19/34446d0d37dde.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  background-color: #f0f8ff;
+}
+.sidebar {
+  opacity: 0.8;
 }
