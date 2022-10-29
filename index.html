@@ -172,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-10-25 00:20:55 / Modified: 09:11:11" itemprop="dateCreated datePublished" datetime="2022-10-25T00:20:55+08:00">2022-10-25</time>
+              <time title="Created: 2022-10-25 00:20:55" itemprop="dateCreated datePublished" datetime="2022-10-25T00:20:55+08:00">2022-10-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-10-29 20:13:44" itemprop="dateModified" datetime="2022-10-29T20:13:44+08:00">2022-10-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -208,7 +214,8 @@
 <p>发生重大问题：<br>必须按所给发生器发生测试信号,误打误撞过关详见副本(3)<br>周期快了一拍–挪到PC寄存器前，EPC前的寄存器也要删掉<br>改了uret的关灯动作-分别关、触发改回官方、跳转地址交换回去<br>其中TQ触发器很关键，作用见图标注<br>–流水中断的节拍改成单级一致；此处发现uret同步STI-一拍-关CLI同步IE变为1有问题开中断刚好错开中断信号，改为uret一拍STI<br>–多级中断更改多处如单级中断，加上多级的优先级判断和堆栈<br>uret关中断已改为关最高级的，单级中是关最早的<br>开中断执行出错，csrrci和csrrsi地位等同中断发出成功和uret指令，一发出下一秒就翻转中断信号，防止中断排队时的两节拍延迟，正常只要一节拍。CLI、CSI则是正常流程单级也有的开关中断。<br>改为一响应就清空中断请求否则将打断保存在栈中的进程又跳转中断开头从头执行中断</p>
 <p>开始动态分支预测：<br>#是否要将分支改到ID执行–算了<br>将halt改回有效使程序停下，可计数周期<br>看存储实验Cache设计：<br>–q1改了计数器c*，每次计数加0改为加1<br>–q2BlkReady用处未知，暂时删除<br>#改一些名称易读，pdf红色标签<br>@209拍跳转信号为1@194处出错应EX7c实为54<br>–2295第一次改2183第二次初值统一为2，2187为3，2183……最后发现时间总在beq和bne慢，逐步观察发现beq和bne即最终排序阶段只有这两个指令要用由于替换策略LRU的缺点总是替换同一个东西来回替换，几乎没产生作用，于是在mayb情况下换为随机数</p>
 <p>开始单周期CPU上板：看群＆问，看l转v文件夹5+1ppt<br>–看文档和如下经验转Verilog<br>1.寄存器初始化的问题，所有寄存器要初始化。<br>2.寄存器使能端，preset的问题。这些要调成0。–调了<br>3.移位器的算数右移问题。不仅要改运算符，还要改成有符号数。–按012改了，但cpu调用参数没改<br>4.减法器的实现有问题，要修改。–改成了求反加1<br>5.RAM的数据位宽有问题。–没发现<br>–转Verilog时RegFile显示无法转HDL，先删除，方法Verilog代码植入（未知如何添加）或logisim参照资料写<br>–顶层文件似乎没生成-&gt;按群经验修改分线器生成<br>改动处<em>2详见typora<br>–自己写了一个寄存器堆，主要零寄存器始终为0<br>–shell.xdc第一行的不知道什么东西<br>set_property -dict { PACKAGE_PIN J15   IOSTANDARD LVCMOS33 } [get_ports { FPGA_INPUT_PIN_0[0] }];<br>–时钟是连系统时钟的（E3）<br>–排报错warning，搞好约束文档保存并加载进来，两次模拟，生成比特流，选硬件manager加载<br>–上板-&gt;logisim中对，只有两个0-&gt;换了seg和na全为1不变-&gt;问了问题是频率改为200000-&gt;张俊逸的问题-&gt;FPGADigit是一个显示模块充满未知<br>&#x2F;&#x2F;过各流水线CCAB，重定向部分LUI加接loaduse<br>&#x2F;&#x2F;多级中断的亮灯问题、流水线周期数问题<br>q1为何重定向的多路选择如此安排<br>q2周期数的时候改为EX.halt；GO的时候改为halt；</em>多级中断灯<br>–now：为何没暂停，添加CCAB为何“8”出问题，切换频率、切换显示未实现，*算一下板的赫兹；</p>
-<p>课设团队c:circuit<br>初始详见视频<br>git拉取遇到麻烦<br>#halt不用管？；c1中MDin是否该连上？；<br>金币和车两个方面<br>软件以中断服务程序实现<br>两个cpu，同时，有许多重复赋值是因为立即数操作数只有12位eg:addi等等–&gt;是否要采用3&#x2F;4个CPU √<br>#要使小车命&gt;0</p>
+<hr>
+<p>课设团队c:circuit<br>初始详见视频<br>git拉取遇到麻烦<br>#halt不用管？是；c1中MDin是否该连上？未知；<br>金币和车两个方面<br>软件以中断服务程序实现<br>#两个cpu，同时，有许多重复赋值是因为立即数操作数只有12位eg:addi等等–&gt;采用3&#x2F;4个CPU 实现治疗，载入数据，合并电路<br>#要使小车命&gt;0，载入为0即可，计分机制加入<br>#加入治疗，刷新速度不同–循环内代码长度不同<br>#将治疗位置从横向改变变为多点跳动–设计位置<br>#做封装、删除多余电路<br>#删除了速度功能，开始结束功能改为重新开始，存在封装覆盖和小车出界问题<br>#完成报告，视频做一段，PPT视频是他们，团队报告抄PPT，打包个人团队两方提交</p>
 
       
     </div>
