@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png">
+  <link rel="mask-icon" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一些Webpack相关的笔记，引用自博客：https:&#x2F;&#x2F;elubrazione.github.io&#x2F;2022&#x2F;10&#x2F;16&#x2F;Webpack&#x2F;#&#x2F;output">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack学习笔记">
+<meta property="og:url" content="http://example.com/2022/10/31/webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="CardiQ">
+<meta property="og:description" content="一些Webpack相关的笔记，引用自博客：https:&#x2F;&#x2F;elubrazione.github.io&#x2F;2022&#x2F;10&#x2F;16&#x2F;Webpack&#x2F;#&#x2F;output">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-10-31T01:31:03.000Z">
+<meta property="article:modified_time" content="2022-10-31T11:07:10.622Z">
+<meta property="article:author" content="cardiQ">
+<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="typescript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/10/31/webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ch'
+  };
+</script>
+
+  <title>webpack学习笔记 | CardiQ</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CardiQ</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人学习日志:项目记录/草稿笔记/引用文档/随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/31/webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cardiQ">
+      <meta itemprop="description" content="记录日常学习，贡献小绿点">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CardiQ">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          webpack学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-10-31 09:31:03 / Modified: 19:07:10" itemprop="dateCreated datePublished" datetime="2022-10-31T09:31:03+08:00">2022-10-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BC%95%E7%94%A8%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">引用文档</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一些Webpack相关的笔记，引用自博客：<br><h><a target="_blank" rel="noopener" href="https://elubrazione.github.io/2022/10/16/Webpack/#/output">https://elubrazione.github.io/2022/10/16/Webpack/#/output</a></h></p>
+<span id="more"></span>
+
+<h2 id="entry-amp-output"><a href="#entry-amp-output" class="headerlink" title="entry &amp; output"></a>entry &amp; output</h2><h4 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h4><ul>
+<li>用于指定使用的模块，默认值为’.&#x2F;src’</li>
+<li>数据类型：<code>string | Array&lt;string&gt;</code>；单入口就是一个字符串值路径，多入口要用字符串数组的结构。</li>
+<li>多页面的入口，可以使用 <code>CommonsChunkPlugin</code> 插件打包页面间的共享代码。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">entry</span>: &#123;</span><br><span class="line">    <span class="attr">pageOne</span>: <span class="string">&#x27;./src/pageOne/index.js&#x27;</span>,</span><br><span class="line">    <span class="attr">pageTwo</span>: <span class="string">&#x27;./src/pageTwo/index.js&#x27;</span>,</span><br><span class="line">    <span class="attr">pageThree</span>: <span class="string">&#x27;./src/pageThree/index.js&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><ul>
+<li><code>filename</code> 属性为文件名，<code>path</code> 属性为绝对路径</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span>,</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;../dist&quot;</span>),</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若是多入口则要使用占位符来确保文件名字的唯一性，也可以使用hash或者CDN的方法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">filename</span>: <span class="string">&#x27;[name].js&#x27;</span>   <span class="comment">// 占位符</span></span><br><span class="line"><span class="attr">filename</span>: <span class="string">&quot;scripts/[name].[contenthash:5].js&quot;</span>   <span class="comment">// hash</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h2><h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><ul>
+<li>Webpack自身只能处理JavaScript，但是通过 <code>loader</code> 就可以处理任何类型的文件</li>
+<li>在 <code>module</code> 对象里定义 <code>rules</code> 属性，包含了两个必须属性：<br>1.<code>test</code>：标识要被转换的文件<br>2.<code>use</code>：转换时使用哪个loader，可以指定多个</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.txt$/</span>,</span><br><span class="line">        <span class="attr">use</span>: [</span><br><span class="line">          &#123; <span class="attr">loader</span>: <span class="string">&#x27;style-loader&#x27;</span> &#125;,</span><br><span class="line">          &#123; <span class="attr">loader</span>: <span class="string">&#x27;css-loader&#x27;</span>,</span><br><span class="line">            <span class="attr">options</span>: &#123; <span class="attr">modules</span>: <span class="literal">true</span> &#125;&#125;</span><br><span class="line">        ]&#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="常用的loader-use"><a href="#常用的loader-use" class="headerlink" title="常用的loader_use"></a>常用的loader_use</h4><ul>
+<li>如下</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev css-loader   <span class="comment">//加载css文件</span></span><br><span class="line">npm install --save-dev ts-loader    <span class="comment">//将TypeScript转为JavaScript</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="plugins"><a href="#plugins" class="headerlink" title="plugins"></a>plugins</h2><ul>
+<li>插件，具有 <code>apply</code> 属性的 <code>JavaScript</code> 对象。<code>apply</code> 属性会被编译器调用，并且编译的对象可以在整个编译生命周期访问。</li>
+<li>解决 <code>loader</code> 无法实现的其他事。如果要使用一个插件，就 <code>require</code> 该插件，然后添加到 <code>plugins</code> 属性中。</li>
+<li>可以携带参数，必须在配置中向 <code>plugins</code> 属性传入 <code>new</code> 实例</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">HtmlWebpackPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> webpack.<span class="property">optimize</span>.<span class="title class_">UglifyJsPlugin</span>(),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;<span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h2><ul>
+<li>在最后导出<code>config</code>的时候，可以选择<code>mode</code>参数，可以选择<code>production</code>或者<code>development</code>；不同的参数可以告诉webpack使用对应模式下的内置优化。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">export</span> = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;production&#x27;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
+              <a href="/tags/typescript/" rel="tag"># typescript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/30/%E4%B9%9F%E6%97%A0%E5%A6%A8/" rel="prev" title="也无妨">
+      <i class="fa fa-chevron-left"></i> 也无妨
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#entry-amp-output"><span class="nav-number">1.</span> <span class="nav-text">entry &amp; output</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#entry"><span class="nav-number">1.0.1.</span> <span class="nav-text">entry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output"><span class="nav-number">1.0.2.</span> <span class="nav-text">output</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loader"><span class="nav-number">2.</span> <span class="nav-text">loader</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">2.0.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84loader-use"><span class="nav-number">2.0.2.</span> <span class="nav-text">常用的loader_use</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plugins"><span class="nav-number">3.</span> <span class="nav-text">plugins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mode"><span class="nav-number">4.</span> <span class="nav-text">mode</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">cardiQ</p>
+  <div class="site-description" itemprop="description">记录日常学习，贡献小绿点</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cardiQ</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
