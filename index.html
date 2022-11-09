@@ -149,6 +149,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/09/Big-Data-Analytics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://s1.ax1x.com/2022/11/01/xThvNT.jpg#/images/avatar.gif">
+      <meta itemprop="name" content="CardiQ">
+      <meta itemprop="description" content="记录日常学习，贡献小绿点">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CardiQ">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/09/Big-Data-Analytics/" class="post-title-link" itemprop="url">Big-Data-Analytics</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-11-09 16:36:21 / Modified: 17:30:22" itemprop="dateCreated datePublished" datetime="2022-11-09T16:36:21+08:00">2022-11-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%8D%89%E7%A8%BF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">草稿笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>学习主要参照PPT</p>
+<p>PageRank</p>
+<h3 id="1-发展1"><a href="#1-发展1" class="headerlink" title="1.发展1"></a>1.发展1</h3><p>普通rank-&gt;加入teleport随机跳转操作 <a target="_blank" rel="noopener" href="https://www.infoq.cn/article/d52DSRYMoEo86L*AThm6">https://www.infoq.cn/article/d52DSRYMoEo86L*AThm6</a></p>
+<h3 id="2-发展2"><a href="#2-发展2" class="headerlink" title="2.发展2"></a>2.发展2</h3><p>普通（1，1，1，1）-&gt;topic（1，2，5，0）-&gt;samerank（1，0，0，0）<a target="_blank" rel="noopener" href="https://blog.csdn.net/insistgogo/article/details/9885037">https://blog.csdn.net/insistgogo/article/details/9885037</a></p>
+<h3 id="3-无PageRank时代"><a href="#3-无PageRank时代" class="headerlink" title="3.无PageRank时代"></a>3.无PageRank时代</h3><p>只需加多关键词-&gt;通过不可进入&#x2F;可进入（评论）&#x2F;自建网页制造rank到自己网页–against：trustrank专家网络<a target="_blank" rel="noopener" href="https://blog.csdn.net/insistgogo/article/details/9885037">https://blog.csdn.net/insistgogo/article/details/9885037</a><br>Hubs and Authorities-HITS算法， 主要考虑路由器和权威性-&gt;总票数持续增加，如何收敛-&gt;公式</p>
+<h3 id="4-对于HITS算法，无需引入teleport即可证明解存在且唯一，不同于PageRank的是引入-链出值-，最后结果hub，authority都可用，甚至机器学习加权"><a href="#4-对于HITS算法，无需引入teleport即可证明解存在且唯一，不同于PageRank的是引入-链出值-，最后结果hub，authority都可用，甚至机器学习加权" class="headerlink" title="4.对于HITS算法，无需引入teleport即可证明解存在且唯一，不同于PageRank的是引入 链出值 ，最后结果hub，authority都可用，甚至机器学习加权"></a>4.对于HITS算法，无需引入teleport即可证明解存在且唯一，不同于PageRank的是引入 链出值 ，最后结果hub，authority都可用，甚至机器学习加权</h3><p>map-reduce 关注分为：写入chunk-&gt;master-&gt;client；流程：map-&gt;group-&gt;reduce；master决定合作</p>
+<h3 id="5-关联关系分析算法"><a href="#5-关联关系分析算法" class="headerlink" title="5.关联关系分析算法"></a>5.关联关系分析算法</h3><p>第一步：Frequent itemsets:定义频繁数据集-Frequent Itemsets；Support-支持度，支持度要超过门限值s——按set所含项数1，2，……要利用前序的数据集，二项用一项；<br>第二步：Generate rules:association rules，基于频繁数据集的因果关系，注意是不可逆的eg二项式含两个规则；Confidence-自信度，公式1，是条件概率——有可能是无用的既定规则<br>        注confidence实际意义为概率论的条件概率<br>第三步：限定规则；Interest-兴趣度，公式2——考察会取绝对值，高于0.5才是足够高（实验不用Interest，数据不够多）<br>–示例Confidence&amp;Interest–<br>第四步 Mining Association Rules<br>stepa.找频繁数据集I-下次课主要讲算法<br>stepb.规则产生Rule gneration #详见step2<br>pass：一个过程 below confidence：不超过门限的confidence 为降低复杂度：尽量从大规则推算小的规则,<br>缩小工作量——</p>
+<ul>
+<li>maximal frequent itemsets；closed itemsets；–&gt;决定要不要进一步划分rules</li>
+<li>编程时，考虑读写主要是IO操作，hardest在于找频繁数据集；<ul>
+<li>finding frequent pairs–直接找符合门限的单个“商品”太慢太多</li>
+<li>采用Naive Algorithm-考虑对于pairs-2项的查找已经很多</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/07/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9Flab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -854,7 +936,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -865,7 +947,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
