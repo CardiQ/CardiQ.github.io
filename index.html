@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-11-27 18:45:48 / Modified: 18:48:05" itemprop="dateCreated datePublished" datetime="2022-11-27T18:45:48+08:00">2022-11-27</time>
+              <time title="Created: 2022-11-27 18:45:48 / Modified: 19:05:09" itemprop="dateCreated datePublished" datetime="2022-11-27T18:45:48+08:00">2022-11-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -197,23 +197,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>3&#x2F;16、17难题</p>
-<p>3&#x2F;16- 为什么fund f1和fund f2同时放外边就不行，嵌套是否能用别名的问题：可以</p>
-<ul>
-<li>with as方法…和group concat方法…</li>
-<li>distinct是否可以取代&lt;：不行，这样只是没有元组相同，但元组之间可能有aa、ab、ba的情况</li>
-<li>方法2 双向not exists</li>
-</ul>
-<p>3&#x2F;17 2022.2 高峰期；高峰期：连续3 交易日（春假和周末不是） 所有购买总金额超100万（每天）&#x2F;&#x2F;总结出来了先化整为零解决小的容易的再重点记录查询难点</p>
-<ul>
-<li>count…over…</li>
-<li>partion by…</li>
-<li>datediff：函数返回两个日期之间的时间</li>
-<li>注意week函数直接乘2其实有点误差，但其实做的是排序则无所谓</li>
-<li>row_number()…聪明的手段，给工作日数编号，若减去编号的差值相同则这段工作日没有被打断、是连续的</li>
-<li>@row：@sign用于设置用户定义的变量不用@不行吗：可以不用，替代即可；select (@row) a 实际上没有from子句的查询仅是查询（表格化显示）常量之用，在此处写这句没用<br><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/how-do-i-use-the-sign-in-mysql">https://www.tutorialspoint.com/how-do-i-use-the-sign-in-mysql</a><br><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/what-is-the-usage-of-symbol-in-mysql-stored-procedure">https://www.tutorialspoint.com/what-is-the-usage-of-symbol-in-mysql-stored-procedure</a><br>4&#x2F;3<br>–1.from里的subtable不能放在对应where里的not exists中，显示不存在，因此可用with<br>–2.用p2代替subtable的旧做法不对也不可行，首先p2取自p1但p1不能代表subtable它只是用来给subtable加用户编号但与subtable不重合，<br>—-另外用p2加很多修饰表达subtable例如<br>   –where<br>   –p2.pro_type&#x3D;1<br>   –and p2.pro_pif_id &#x3D; subtable.pro_pif_id<br>   –and pnum&gt;2<br>   –and not exists( 也不行因为这些“and”的条件都可能等价于第二个not exists但又不是pnum&gt;2的条件，所以不符合题意，以至于多输出很多不相关的</li>
-</ul>
-
+          <p>3&#x2F;16、17难题,4&#x2F;3耗时在此记录</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/27/Database-lab/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -263,7 +255,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-11-10 00:24:53" itemprop="dateModified" datetime="2022-11-10T00:24:53+08:00">2022-11-10</time>
+                <time title="Modified: 2022-11-27 19:03:20" itemprop="dateModified" datetime="2022-11-27T19:03:20+08:00">2022-11-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -427,7 +419,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-11-05 15:31:43" itemprop="dateModified" datetime="2022-11-05T15:31:43+08:00">2022-11-05</time>
+                <time title="Modified: 2022-11-27 18:50:14" itemprop="dateModified" datetime="2022-11-27T18:50:14+08:00">2022-11-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">

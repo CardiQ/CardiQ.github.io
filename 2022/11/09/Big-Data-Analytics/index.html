@@ -27,13 +27,16 @@
 <meta property="og:site_name" content="CardiQ">
 <meta property="og:description" content="1.PageRank发展1普通rank-&gt;加入teleport随机跳转操作 https:&#x2F;&#x2F;www.infoq.cn&#x2F;article&#x2F;d52DSRYMoEo86L*AThm6 2.PageRank发展2普通（1，1，1，1）-&gt;topic（1，2，5，0）-&gt;samerank（1，0，0，0）https:&#x2F;&#x2F;blog.csdn.net&#x2F;insistgogo&#x2F;article&#x2F;det">
 <meta property="og:locale">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/27/zUZaU1.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/27/zUZ0C6.jpg">
 <meta property="article:published_time" content="2022-11-09T08:36:21.000Z">
-<meta property="article:modified_time" content="2022-11-09T16:24:53.190Z">
+<meta property="article:modified_time" content="2022-11-27T11:03:20.641Z">
 <meta property="article:author" content="CardiQ">
 <meta property="article:tag" content="大数据">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/11/27/zUZaU1.jpg">
 
 <link rel="canonical" href="http://example.com/2022/11/09/Big-Data-Analytics/">
 
@@ -184,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-11-10 00:24:53" itemprop="dateModified" datetime="2022-11-10T00:24:53+08:00">2022-11-10</time>
+                <time title="Modified: 2022-11-27 19:03:20" itemprop="dateModified" datetime="2022-11-27T19:03:20+08:00">2022-11-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,6 +230,9 @@
 </ul>
 </li>
 </ul>
+<h3 id="6-finding-frequent-itemset"><a href="#6-finding-frequent-itemset" class="headerlink" title="6.finding frequent itemset"></a>6.finding frequent itemset</h3><p>注，hash函数必须用三元组形式而不是三角矩阵；因为hash函数要用item<br>multistage算法和multihash算法，前者IO开销换内存，后者内存换IO开销<br>finding similar items：locality sensitive hashing：<br>quiz1-在bucket计数算频繁pairs时，注意：直接加bucket所含各support会导致重复计数，实际上应该取所在的basket，下次遍历到就不再重复计数（ppt是这样写的，不在乎重复计数）<br>新潮流：高维数据<br>高维数据（地区敏感哈希*映射，聚类，降维）-图数据-无限数据-机器学习-应用<br>找签名相似-高维近邻<br>回归正题：given-多维数据点x1,x2，和距离函数d(x1,x2)，找d&lt;&#x3D;s（support），从O(N^2)到O(N)<br>前序（A-Priori）：renumber方式可以降低N的值<br>今次：找相似找candidate，但要提供相似度-&gt;distance measures：jaccard distance，找高维空间近邻<br>比对不再是简单的分词处理类似MapReduce，而是基于jaccard的集合比对ShingLing把文档变成集合、MinHashing压缩生成签名、LocalSensitiveHashing采样<br>minihashing：对sparse matrix都要想到hash得到signature，主要思考如何生成签名大部分对比丢给LocalSensitiveH-要做hash使得类似文档set进入一个bucket，实现为进行n次置换后生成n行签名，可以证明这个hash的相似是基于jacard 相似度的</p>
+<h3 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h3><p><img src="https://s1.ax1x.com/2022/11/27/zUZaU1.jpg" alt="7" title="7"></p>
+<h3 id="8"><a href="#8" class="headerlink" title="8."></a>8.</h3><p><img src="https://s1.ax1x.com/2022/11/27/zUZ0C6.jpg" alt="8" title="8"></p>
 <p>–学习主要参照PPT–</p>
 
     </div>
@@ -313,7 +319,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-PageRank%E5%8F%91%E5%B1%951"><span class="nav-number">1.</span> <span class="nav-text">1.PageRank发展1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-PageRank%E5%8F%91%E5%B1%952"><span class="nav-number">2.</span> <span class="nav-text">2.PageRank发展2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%97%A0PageRank%E6%97%B6%E4%BB%A3"><span class="nav-number">3.</span> <span class="nav-text">3.无PageRank时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E5%AF%B9%E4%BA%8EHITS%E7%AE%97%E6%B3%95%EF%BC%8C%E6%97%A0%E9%9C%80%E5%BC%95%E5%85%A5teleport%E5%8D%B3%E5%8F%AF%E8%AF%81%E6%98%8E%E8%A7%A3%E5%AD%98%E5%9C%A8%E4%B8%94%E5%94%AF%E4%B8%80%EF%BC%8C%E4%B8%8D%E5%90%8C%E4%BA%8EPageRank%E7%9A%84%E6%98%AF%E5%BC%95%E5%85%A5-%E9%93%BE%E5%87%BA%E5%80%BC-%EF%BC%8C%E6%9C%80%E5%90%8E%E7%BB%93%E6%9E%9Chub%EF%BC%8Cauthority%E9%83%BD%E5%8F%AF%E7%94%A8%EF%BC%8C%E7%94%9A%E8%87%B3%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8A%A0%E6%9D%83"><span class="nav-number">4.</span> <span class="nav-text">4.1对于HITS算法，无需引入teleport即可证明解存在且唯一，不同于PageRank的是引入 链出值 ，最后结果hub，authority都可用，甚至机器学习加权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2map-reduce-%E5%85%B3%E6%B3%A8%E5%88%86%E4%B8%BA%EF%BC%9A%E5%86%99%E5%85%A5chunk-gt-master-gt-client%EF%BC%9B%E6%B5%81%E7%A8%8B%EF%BC%9Amap-gt-group-gt-reduce%EF%BC%9Bmaster%E5%86%B3%E5%AE%9A%E5%90%88%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">4.2map-reduce 关注分为：写入chunk-&gt;master-&gt;client；流程：map-&gt;group-&gt;reduce；master决定合作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">5.关联关系分析算法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-PageRank%E5%8F%91%E5%B1%951"><span class="nav-number">1.</span> <span class="nav-text">1.PageRank发展1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-PageRank%E5%8F%91%E5%B1%952"><span class="nav-number">2.</span> <span class="nav-text">2.PageRank发展2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%97%A0PageRank%E6%97%B6%E4%BB%A3"><span class="nav-number">3.</span> <span class="nav-text">3.无PageRank时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E5%AF%B9%E4%BA%8EHITS%E7%AE%97%E6%B3%95%EF%BC%8C%E6%97%A0%E9%9C%80%E5%BC%95%E5%85%A5teleport%E5%8D%B3%E5%8F%AF%E8%AF%81%E6%98%8E%E8%A7%A3%E5%AD%98%E5%9C%A8%E4%B8%94%E5%94%AF%E4%B8%80%EF%BC%8C%E4%B8%8D%E5%90%8C%E4%BA%8EPageRank%E7%9A%84%E6%98%AF%E5%BC%95%E5%85%A5-%E9%93%BE%E5%87%BA%E5%80%BC-%EF%BC%8C%E6%9C%80%E5%90%8E%E7%BB%93%E6%9E%9Chub%EF%BC%8Cauthority%E9%83%BD%E5%8F%AF%E7%94%A8%EF%BC%8C%E7%94%9A%E8%87%B3%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8A%A0%E6%9D%83"><span class="nav-number">4.</span> <span class="nav-text">4.1对于HITS算法，无需引入teleport即可证明解存在且唯一，不同于PageRank的是引入 链出值 ，最后结果hub，authority都可用，甚至机器学习加权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2map-reduce-%E5%85%B3%E6%B3%A8%E5%88%86%E4%B8%BA%EF%BC%9A%E5%86%99%E5%85%A5chunk-gt-master-gt-client%EF%BC%9B%E6%B5%81%E7%A8%8B%EF%BC%9Amap-gt-group-gt-reduce%EF%BC%9Bmaster%E5%86%B3%E5%AE%9A%E5%90%88%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">4.2map-reduce 关注分为：写入chunk-&gt;master-&gt;client；流程：map-&gt;group-&gt;reduce；master决定合作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">5.关联关系分析算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-finding-frequent-itemset"><span class="nav-number">7.</span> <span class="nav-text">6.finding frequent itemset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7"><span class="nav-number">8.</span> <span class="nav-text">7.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8"><span class="nav-number">9.</span> <span class="nav-text">8.</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
