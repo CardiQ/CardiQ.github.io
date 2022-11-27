@@ -28,7 +28,7 @@
 <meta property="og:description" content="lab1.检查屏幕，完成镜像资源烧录SSH-命令行登录 SCP-虚拟机共享文件问题：虚拟机无法向外连接，配置开发板ip为172.16.1.3，每次需要用终端就用putty，需要传文件就用winscp">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-11-07T13:33:02.000Z">
-<meta property="article:modified_time" content="2022-11-09T16:46:18.151Z">
+<meta property="article:modified_time" content="2022-11-27T11:08:17.787Z">
 <meta property="article:author" content="CardiQ">
 <meta property="article:tag" content="lab">
 <meta property="article:tag" content="嵌入式系统">
@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-11-10 00:46:18" itemprop="dateModified" datetime="2022-11-10T00:46:18+08:00">2022-11-10</time>
+                <time title="Modified: 2022-11-27 19:08:17" itemprop="dateModified" datetime="2022-11-27T19:08:17+08:00">2022-11-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -213,13 +213,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>lab1.检查屏幕，完成镜像资源烧录<br>SSH-命令行登录 SCP-虚拟机共享文件<br>问题：虚拟机无法向外连接，配置开发板ip为172.16.1.3，每次需要用终端就用putty，需要传文件就用winscp</p>
+        <h3 id="lab1-检查屏幕，完成镜像资源烧录"><a href="#lab1-检查屏幕，完成镜像资源烧录" class="headerlink" title="lab1.检查屏幕，完成镜像资源烧录"></a>lab1.检查屏幕，完成镜像资源烧录</h3><p>SSH-命令行登录 SCP-虚拟机共享文件<br>问题：虚拟机无法向外连接，配置开发板ip为172.16.1.3，每次需要用终端就用putty，需要传文件就用winscp</p>
 <span id="more"></span>
 <p>改了本机的以太网IP172.16.1.1（默认是DHCP），手动配了orangepi的IP172.16.1.3，改了虚拟机IP改为172.16.1.2+桥接（复制物理无所谓）但失败于是换为NAT192.168.22.128+网关192.168.22.2成功<br>#做到编译产生out，但问题是虚拟机空间不足待解决，同时交叉编译器是否与OS冲突<br>#就是先配置板子sudo ifconfig eth0 172.16.1.3，虚拟机保持NAT，若不行就虚拟机桥接共享地址一次、再重复以上动作<br>#winSAP前先sudo ufw disable关闭防火墙+sudo apt-get install openssh-server（可能需要sudo &#x2F;etc&#x2F;init.d&#x2F;ssh start）<br>#没有运行权限x，chmod +x lab1或chmod 775 lab1</p>
-<ol start="2">
-<li>看报告写代码，搭载过程和lab1一样，关键是目录位置再精简一下，还有注意修改文件权限<br>*试用手机热点连</li>
-</ol>
-<p>#试把输出行删掉看输出结果是否能好一些</p>
+<h3 id="lab2"><a href="#lab2" class="headerlink" title="lab2."></a>lab2.</h3><p>看报告写代码，搭载过程和lab1一样，关键是目录位置再精简一下，还有注意修改文件权限<br>*试用手机热点连<br>#试把输出行删掉看输出结果是否能好一些<br>*没有特判斜率为无穷的处理<br>不能用k&lt;0来判断：由于double浮点数的精度问题，所以在比较大小的时候，不能像int整数型那样，直接if(a&#x3D;&#x3D;b)，if(a&lt;b)，if(a&gt;b)<br>要使用一个精度EPS：<br>vmware有线NAT联网不能开VPN</p>
+<h3 id="lab3"><a href="#lab3" class="headerlink" title="lab3"></a>lab3</h3><p>test中的<br>为画线效率换了自己的画线函数，矩形函数已改好；<br>字形有锯齿，改了没换test–继续：改成紫色，考虑把color拆分成三维填进去–仍锯齿，另外加了break更快<br>TODO再看看PPT+搜索矢量字体显示<br>不行再试试另个模板的可执行文件</p>
+<h3 id="lab4"><a href="#lab4" class="headerlink" title="lab4"></a>lab4</h3><p>改了graphic.c，common.h<br>main中对左下角的判断有问题-把循环小于等于改为小于即可，因为数组访问越界了<br>#改好了静态ipv4，但每次开机都得重新关桌面</p>
 
     </div>
 
@@ -304,6 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lab1-%E6%A3%80%E6%9F%A5%E5%B1%8F%E5%B9%95%EF%BC%8C%E5%AE%8C%E6%88%90%E9%95%9C%E5%83%8F%E8%B5%84%E6%BA%90%E7%83%A7%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">lab1.检查屏幕，完成镜像资源烧录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lab2"><span class="nav-number">2.</span> <span class="nav-text">lab2.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lab3"><span class="nav-number">3.</span> <span class="nav-text">lab3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lab4"><span class="nav-number">4.</span> <span class="nav-text">lab4</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
