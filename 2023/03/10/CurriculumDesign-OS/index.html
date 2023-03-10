@@ -20,18 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="记录日常学习，贡献小绿点">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CardiQ">
-<meta property="og:url" content="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/index.html">
+  <meta name="description" content="lab1_ch1user_lib h和c，syscall h和c，elf h和c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CurriculumDesign-OS">
+<meta property="og:url" content="http://example.com/2023/03/10/CurriculumDesign-OS/index.html">
 <meta property="og:site_name" content="CardiQ">
-<meta property="og:description" content="记录日常学习，贡献小绿点">
+<meta property="og:description" content="lab1_ch1user_lib h和c，syscall h和c，elf h和c">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-03-10T13:43:37.000Z">
+<meta property="article:modified_time" content="2023-03-10T13:45:14.882Z">
 <meta property="article:author" content="CardiQ">
-<meta property="article:tag" content="C&#x2F;C++ Java Android React js taro">
+<meta property="article:tag" content="OS">
+<meta property="article:tag" content="ELF">
+<meta property="article:tag" content="backtrace">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="http://example.com/2023/03/10/CurriculumDesign-OS/">
 
 
 <script id="page-configurations">
@@ -39,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'ch'
   };
 </script>
 
-  <title>Category: 项目记录 | CardiQ</title>
+  <title>CurriculumDesign-OS | CardiQ</title>
   
 
 
@@ -143,71 +147,121 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">项目记录
-          <small>Category</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/10/CurriculumDesign-OS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://s1.ax1x.com/2022/11/01/xThvNT.jpg#/images/avatar.gif">
+      <meta itemprop="name" content="CardiQ">
+      <meta itemprop="description" content="记录日常学习，贡献小绿点">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CardiQ">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CurriculumDesign-OS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-03-10 21:43:37 / Modified: 21:45:14" itemprop="dateCreated datePublished" datetime="2023-03-10T21:43:37+08:00">2023-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%8D%89%E7%A8%BF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">草稿笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
-    </div>
+        <h1 id="lab1-ch1"><a href="#lab1-ch1" class="headerlink" title="lab1_ch1"></a>lab1_ch1</h1><p>user_lib h和c，syscall h和c，elf h和c</p>
+<span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-01T10:49:00+08:00"
-              content="2022-11-01">
-          11-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/01/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Kdocs-SE%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url">
-            <span itemprop="name">React学习笔记-Kdocs-SE项目学习记录</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-10-18T21:01:32+08:00"
-              content="2022-10-18">
-          10-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/10/18/React-js-taro%E5%AE%9E%E7%8E%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/" itemprop="url">
-            <span itemprop="name">React+js+taro实现小程序俄罗斯方块</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<ul>
+<li>sp是栈顶指针fp是栈底指针，在riscv中sp就是sp寄存器，而fp为s0寄存器（一般被优化为0但此处开启某指令禁止此优化），在riscv.h中的riscv_regs中有，并在process.h中的trapframe中作为成员变量；</li>
+<li>从main函数的反汇编代码观察到main函数中的fp为0，可以此判断函数调用到底</li>
+<li>函数栈顶指针所指一般为空：⒈将帧指针压入栈中：push ebp；⒉用ebp保存当前栈指针：mov ebp,esp；⒊使得栈指针自减，自减得到的内存应当能够被用来存储被调用函数的本地状态：sub esp,0CCh</li>
+<li>大意：从user到syscall进行系统调用，按文档要求在elf中进行修改（数据结构和对应函数）</li>
+<li>#2023版多处变量更名#例如elfloader</li>
+<li>对于elf：elf_header，自增加section_header</li>
+<li>清楚要添加的数据结构（见代码elf,h文件lab1_ch1处），elf.c中函数添加补全使进程建立时就拥有elf文件，syscall中就可以进行对应查询；主要symtab和strtab的建立和elfloader完善参考记录.md，注symtab和strtab其实也是一种section_header内容</li>
+<li>·！了解一下elf_status，·了解一下symtab和strtab的大小</li>
+<li>关于结构体字段常量标识规定：描述section的类型<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiqingwu/p/elf_explore_3.html%EF%BC%9B%E7%AC%A6%E5%8F%B7%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8Bhttps://blog.csdn.net/farmwang/article/details/72848058">https://www.cnblogs.com/jiqingwu/p/elf_explore_3.html；符号表中的符号类型https://blog.csdn.net/farmwang/article/details/72848058</a></li>
+<li><del>？？.symtab、.strtab是否放入section header</del> ，逻辑上是在section header，物理上设置了elf_ctx结构体中的两个数组进行存储</li>
+<li><del>？？为何symtab不用+offset</del>，加了没管</li>
+<li>！先按16定值做，不用fp</li>
+<li><del>为什么ra&#x3D;0就停下</del> 改为”main“，用字符串判断</li>
+<li>！为什么是用st_value比较：其含义是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ilocker/p/4758842.html%E4%B8%AD%E6%89%80%E8%AE%B2%E7%9A%84%E5%81%8F%E7%A7%BB%E5%9C%B0%E5%9D%80%EF%BC%8C%E8%80%8Csp%E6%89%80%E6%8C%87%E5%86%85%E5%AE%B9%E4%B8%BAra%E5%8D%B3%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80%EF%BC%88%E4%BE%8B%E5%A6%82%EF%BC%8Cmain%E7%9A%84sp%E6%89%80%E6%8C%87ra%E5%8D%B3%E4%B8%BAmain%E4%B8%AD%E8%B0%83%E7%94%A8f1%E7%9A%84%E4%B8%8B%E4%B8%80%E6%9D%A1%E8%AF%AD%E5%8F%A5%EF%BC%8C%E8%BF%98%E6%98%AF%E6%AF%94main%E5%9C%B0%E5%9D%80%E5%B0%8F%EF%BC%89%EF%BC%8C%E4%B8%A4%E8%80%85%E7%9A%86%E4%B8%BA%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%BB%8Eobjdump%E5%8F%AF%E8%A7%81%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E4%BA%8E%E7%88%B6%E5%87%BD%E6%95%B0%E7%9A%84">https://www.cnblogs.com/ilocker/p/4758842.html中所讲的偏移地址，而sp所指内容为ra即返回地址（例如，main的sp所指ra即为main中调用f1的下一条语句，还是比main地址小），两者皆为虚拟地址，从objdump可见子函数的小于父函数的</a></li>
+<li>？？fp看objdump是在0(sp)处，之前以为0(sp)是ra？</li>
+</ul>
+<p>总结：从userlib调用到syscall，并在elf中加所需数据结构、并对数据结构进行填充、回头在syscall中调用，每个c文件修改对应修改h文件</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chengqiuming/article/details/90113855"> 可重定位文件.strtab section和.symtab section分析_chengqiuming的博客-CSDN博客</a></p>
+<p>[Elf64 格式-Linux 内核揭密 (cntofu.com)](<a target="_blank" rel="noopener" href="https://www.cntofu.com/book/114/Theory/ELF.md#:~:text=%E4%B8%80%E4%B8%AAELF%E6%96%87%E4%BB%B6%E7%94%B1%E4%BB%A5%E4%B8%8B%E4%B8%89%E9%83%A8%E5%88%86%E7%BB%84%E6%88%90%EF%BC%9A">https://www.cntofu.com/book/114/Theory/ELF.md#:~:text=一个ELF文件由以下三部分组成：</a> ELF头 (ELF header) - 描述文件的主要特性：类型，CPU架构，入口地址，现有部分的大小和偏移等等；,程序头表 (Program header table) - 列举了所有有效的段 (segments)和他们的属性。)</p>
+<h1 id="lab1-ch2"><a href="#lab1-ch2" class="headerlink" title="lab1_ch2"></a>lab1_ch2</h1><p>TODO：开库上传lab1ch1代码，<em>更新博客</em>；对照lab1_3修改，找下模板，看文档开始</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OS/" rel="tag"># OS</a>
+              <a href="/tags/ELF/" rel="tag"># ELF</a>
+              <a href="/tags/backtrace/" rel="tag"># backtrace</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/27/Database-lab/" rel="prev" title="Database-lab">
+      <i class="fa fa-chevron-left"></i> Database-lab
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -260,6 +314,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lab1-ch1"><span class="nav-number">1.</span> <span class="nav-text">lab1_ch1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lab1-ch2"><span class="nav-number">2.</span> <span class="nav-text">lab1_ch2</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
