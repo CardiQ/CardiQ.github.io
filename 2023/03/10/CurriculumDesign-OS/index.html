@@ -28,7 +28,7 @@
 <meta property="og:description" content="lab1_ch1user_lib h和c，syscall h和c，elf h和c">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-03-10T13:43:37.000Z">
-<meta property="article:modified_time" content="2023-03-12T15:54:01.757Z">
+<meta property="article:modified_time" content="2023-03-17T02:46:47.974Z">
 <meta property="article:author" content="CardiQ">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="ELF">
@@ -184,7 +184,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-12 23:54:01" itemprop="dateModified" datetime="2023-03-12T23:54:01+08:00">2023-03-12</time>
+                <time title="Modified: 2023-03-17 10:46:47" itemprop="dateModified" datetime="2023-03-17T10:46:47+08:00">2023-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,11 +238,64 @@
 <p>（.strtab和.symtab也是section之一）</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chengqiuming/article/details/90113855"> 可重定位文件.strtab section和.symtab section分析_chengqiuming的博客-CSDN博客</a></p>
 <p>[Elf64 格式-Linux 内核揭密 (cntofu.com)](<a target="_blank" rel="noopener" href="https://www.cntofu.com/book/114/Theory/ELF.md#:~:text=%E4%B8%80%E4%B8%AAELF%E6%96%87%E4%BB%B6%E7%94%B1%E4%BB%A5%E4%B8%8B%E4%B8%89%E9%83%A8%E5%88%86%E7%BB%84%E6%88%90%EF%BC%9A">https://www.cntofu.com/book/114/Theory/ELF.md#:~:text=一个ELF文件由以下三部分组成：</a> ELF头 (ELF header) - 描述文件的主要特性：类型，CPU架构，入口地址，现有部分的大小和偏移等等；,程序头表 (Program header table) - 列举了所有有效的段 (segments)和他们的属性。)</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiqingwu/p/elf_explore_2.html">ELF文件解析（二）：ELF header详解 - JollyWing - 博客园 (cnblogs.com)</a></p>
 <h2 id="lab1-ch2"><a href="#lab1-ch2" class="headerlink" title="lab1_ch2"></a>lab1_ch2</h2><p>要用到的.debug_line是elf的一个段</p>
 <p>需要利用用户程序编译时产生的调试信息，dwarf格式：是与 ELF 一起设计的调试数据格式</p>
-<p>mtrap c</p>
+<p>mtrap c，elf h和c</p>
 <ul>
-<li>当trap发生时，mepc将记录发生异常的指令的虚拟地址。读取mepc寄存器所用指令在文档可见，为read_csr(mepc)</li>
+<li><p>当trap发生时，mepc将记录发生异常的指令的虚拟地址。读取mepc寄存器所用指令在文档可见，为read_csr(mepc)</p>
+</li>
+<li><p><strong>.debug_line</strong>部分允许确定内存中给定地址的源代码文件和行号。内容按表示一个主源代码文件的编译单元 （CU） 进行细分。</p>
+<p>每个 CU 都有一个标头</p>
+</li>
+<li><p>make_addr_line函数在for循环外的操作，dir，file，line赋值</p>
+<blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*<span class="comment">// directory name char pointer array*</span></span><br><span class="line"></span><br><span class="line">p-&gt;dir = (<span class="type">char</span> **)((((uint64)debug_line + length + <span class="number">7</span>) &gt;&gt; <span class="number">3</span>) &lt;&lt; <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这个操作的目的是取到一个大于debugline+length的最小的8的倍数，是在保证后一个数组开头的地址是整地址，后三位是0</p>
+</blockquote>
+<p>这是因为缓冲区是缓冲区，是将elf的debug_line段通过该函数中转到进程结构，此处的赋值是开辟缓冲区之意，后面循环复制才是赋值</p>
+<p>缓冲区dir、file、line三个数组会依次存储在debug_line数据缓冲区<strong>之后</strong>（同进程结构），dir数组和file数组的大小为<strong>64</strong></p>
+</li>
+<li><pre><code class="c">// get directory name char pointer in this CU
+    while (*off != 0)
+    &#123;
+      p-&gt;dir[dir_ind++] = off;
+      while (*off != 0)
+        off++;
+      off++;
+    &#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  此处while (*off != 0)是因为字符串末尾即为0</span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  off++;</span><br><span class="line">      addr_line regs;</span><br><span class="line">      regs.addr = 0;</span><br><span class="line">      regs.file = 1;</span><br><span class="line">      regs.line = 1;</span><br><span class="line">      // simulate the state machine op code</span><br><span class="line">      for (;;)</span><br><span class="line">      &#123;</span><br><span class="line">        uint8 op = *(off++);</span><br><span class="line">        switch (op)</span><br><span class="line">        &#123;</span><br><span class="line">        case 0: // Extended Opcodes</span><br><span class="line">          read_uleb128(NULL, &amp;off);</span><br><span class="line">          op = *(off++);</span><br><span class="line">          switch (op)</span><br></pre></td></tr></table></figure>
+
+此处依据为，要了解码来自**.debug_line**的信息，需要实现一个具有几个寄存器的小型状态机。最重要的寄存器是：
+
+- 地址：内存中的地址
+- 文件：源代码文件
+- 行：该文件中的行号（从 1 开始）
+
+每个行号语句都以 1 字节操作码开头，可以选择后跟一个参数。每个操作码告诉要更改的状态机寄存器。
+
+&gt; *操作码：
+&gt;
+&gt; - 标准操作码（1 到 12）：请参阅 [DWARF 调试信息格式](http://dwarfstd.org/doc/DWARF4.pdf)的第 6.2.5.2 节，了解这些操作码在做什么以及它们采用哪些参数
+&gt; - 扩展操作码 （0）：下一个字节是一个无符号的 LEB128 编码数字，用于指示扩展操作码在该数字之后使用多少字节。之后的字节告诉扩展的操作码编号，后跟任何参数。请参阅 [DWARF 调试信息格式](http://dwarfstd.org/doc/DWARF4.pdf)的第 6.2.5.3 节
+&gt; - 特殊操作码（13 或更大）：这些是单字符指令，指示更改地址和线路寄存器。如果地址只能增加，请注意该行可能会减少。计算方法有点棘手（请参阅 [DWARF 调试信息格式](http://dwarfstd.org/doc/DWARF4.pdf)的第 6.2.5.1 节），但依赖于标头中的行基、线范围和操作码基，并遵循以下行：
+&gt;
+&gt; <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Address += ((Opcode - Opcode base) / Line range) * Min instruction length</span><br><span class="line">Line += Line base + (Opcode - Opcode base) % Line range</span><br></pre></td></tr></table></figure>
+&gt;
+&gt; 在上面的例子中，特殊操作码 48（存储在文件中为 48 + 13 = 0x3D）告诉地址增加 48 / 14 = 3 字节（因此从 0x100ad1 移动到 0x100ad4），将行增加 -5 + 48 % 14 = 1（因此从 16 移动到 17）
+</code></pre>
+</li>
+<li><p>以上，第一步：如何通过epc存有的下一行代码地址找到该代码所在行&#x2F;文件&#x2F;文件夹（主要代码），下一步：由这些信息将其打印（用spike_file指令读取已从epc获得的程序行对应的dir、file等信息）</p>
+</li>
+<li><p>上面是mtrap中的具体操作，而前提是先在elf.c中添加load debug_line的函数，并将其加入总load函数以及elf.h文件</p>
+</li>
+<li><p>addr循环小于判断改为等于；<del>定义的常量省略</del>；strlen参数可改为dirpath；sizeof(secheader)&#x3D;&#x3D;ctx-&gt;ehdr.shentsize</p>
+</li>
+<li><p>后在mtrap.c中添加函数，并加入每一个异常处理开头；添加string.h</p>
+</li>
+<li><p><strong>易错：分配缓冲区必须作为全局变量，所有用到其地址作为参数的必须放在函数外部声明</strong></p>
+</li>
 </ul>
 
     </div>
