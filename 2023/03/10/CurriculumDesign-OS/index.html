@@ -28,7 +28,7 @@
 <meta property="og:description" content="lab1_ch1user_lib h和c，syscall h和c，elf h和c">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-03-10T13:43:37.000Z">
-<meta property="article:modified_time" content="2023-03-17T02:46:47.974Z">
+<meta property="article:modified_time" content="2023-03-25T02:36:37.376Z">
 <meta property="article:author" content="CardiQ">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="ELF">
@@ -184,7 +184,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-17 10:46:47" itemprop="dateModified" datetime="2023-03-17T10:46:47+08:00">2023-03-17</time>
+                <time title="Modified: 2023-03-25 10:36:37" itemprop="dateModified" datetime="2023-03-25T10:36:37+08:00">2023-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,8 +227,8 @@
 <li>清楚要添加的数据结构（见代码elf,h文件lab1_ch1处），elf.c中函数添加补全使进程建立时就拥有elf文件，syscall中就可以进行对应查询；主要symtab和strtab的建立和elfloader完善参考记录.md，注symtab和strtab其实也是一种section_header内容</li>
 <li>·！了解一下elf_status，·了解一下symtab和strtab的大小</li>
 <li>关于结构体字段常量标识规定：描述section的类型<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiqingwu/p/elf_explore_3.html%EF%BC%9B%E7%AC%A6%E5%8F%B7%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8Bhttps://blog.csdn.net/farmwang/article/details/72848058">https://www.cnblogs.com/jiqingwu/p/elf_explore_3.html；符号表中的符号类型https://blog.csdn.net/farmwang/article/details/72848058</a></li>
-<li><del>？？.symtab、.strtab是否放入section header</del> ，逻辑上是在section header，物理上设置了elf_ctx结构体中的两个数组进行存储</li>
-<li><del>？？为何symtab不用+offset</del>，加了没管</li>
+<li><del>.symtab、.strtab是否放入section header</del> ，逻辑上是在section header，物理上设置了elf_ctx结构体中的两个数组进行存储</li>
+<li><del>为何symtab不用+offset</del>，加了无影响</li>
 <li>！先按16定值做，不用fp</li>
 <li><del>为什么ra&#x3D;0就停下</del> 改为”main“，用字符串判断</li>
 <li>！为什么是用st_value比较：其含义是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ilocker/p/4758842.html%E4%B8%AD%E6%89%80%E8%AE%B2%E7%9A%84%E5%81%8F%E7%A7%BB%E5%9C%B0%E5%9D%80%EF%BC%8C%E8%80%8Csp%E6%89%80%E6%8C%87%E5%86%85%E5%AE%B9%E4%B8%BAra%E5%8D%B3%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80%EF%BC%88%E4%BE%8B%E5%A6%82%EF%BC%8Cmain%E7%9A%84sp%E6%89%80%E6%8C%87ra%E5%8D%B3%E4%B8%BAmain%E4%B8%AD%E8%B0%83%E7%94%A8f1%E7%9A%84%E4%B8%8B%E4%B8%80%E6%9D%A1%E8%AF%AD%E5%8F%A5%EF%BC%8C%E8%BF%98%E6%98%AF%E6%AF%94main%E5%9C%B0%E5%9D%80%E5%B0%8F%EF%BC%89%EF%BC%8C%E4%B8%A4%E8%80%85%E7%9A%86%E4%B8%BA%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%BB%8Eobjdump%E5%8F%AF%E8%A7%81%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E4%BA%8E%E7%88%B6%E5%87%BD%E6%95%B0%E7%9A%84">https://www.cnblogs.com/ilocker/p/4758842.html中所讲的偏移地址，而sp所指内容为ra即返回地址（例如，main的sp所指ra即为main中调用f1的下一条语句，还是比main地址小），两者皆为虚拟地址，从objdump可见子函数的小于父函数的</a></li>
@@ -241,7 +241,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiqingwu/p/elf_explore_2.html">ELF文件解析（二）：ELF header详解 - JollyWing - 博客园 (cnblogs.com)</a></p>
 <h2 id="lab1-ch2"><a href="#lab1-ch2" class="headerlink" title="lab1_ch2"></a>lab1_ch2</h2><p>要用到的.debug_line是elf的一个段</p>
 <p>需要利用用户程序编译时产生的调试信息，dwarf格式：是与 ELF 一起设计的调试数据格式</p>
-<p>mtrap c，elf h和c</p>
+<p>mtrap c，elf h和c，看process.h</p>
 <ul>
 <li><p>当trap发生时，mepc将记录发生异常的指令的虚拟地址。读取mepc寄存器所用指令在文档可见，为read_csr(mepc)</p>
 </li>
@@ -297,6 +297,19 @@
 <li><p><strong>易错：分配缓冲区必须作为全局变量，所有用到其地址作为参数的必须放在函数外部声明</strong></p>
 </li>
 </ul>
+<p>总结：elf.c中自己写一个函数将ctx（已给的elf文件上下文）中的.debug_line段</p>
+<h2 id="lab2-ch2"><a href="#lab2-ch2" class="headerlink" title="lab2_ch2"></a>lab2_ch2</h2><p>syscall c，vmm h和c</p>
+<blockquote>
+<p>BONUS</p>
+<p>being在修改dns为1.1.1.1后关掉header editor即可使用（dev浏览器）&amp;每次都得VPN+(刷新dns)+手动删being的cookie；之后小号邮箱又被踢到waitlist，重新启用大号邮箱又可以使用了</p>
+<p>使用Marp for VS Code+Markdown All in One可以用markdown写PPT</p>
+</blockquote>
+<p>vmm.h加MCB数据结构–MCB、函数声明–MCB建立，malloc，free</p>
+<p>syscall.c改函数，改调用参数</p>
+<ul>
+<li><strong>易错：按页分配，所以要对va进行ROUNDUP，但后续计算地址用原本地址–混淆则出错misaligned AMO</strong></li>
+</ul>
+<p>总结：app文件中已给出调用，其目的是将新分配空间分配到刚回收的空间，以此为新策略的表现；调用链：app-&gt;（两个better函数）-&gt;userlib-&gt;syscall-&gt;vmm；kernel&#x2F;pmm.c文件中包含了所有对物理内存的初始化、分配和回收的例程，它们的实现非常的简单，感兴趣的读者请对里面的函数进行阅读理解。</p>
 
     </div>
 
@@ -379,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch1"><span class="nav-number">1.</span> <span class="nav-text">lab1_ch1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch2"><span class="nav-number">2.</span> <span class="nav-text">lab1_ch2</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch1"><span class="nav-number">1.</span> <span class="nav-text">lab1_ch1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch2"><span class="nav-number">2.</span> <span class="nav-text">lab1_ch2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab2-ch2"><span class="nav-number">3.</span> <span class="nav-text">lab2_ch2</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
