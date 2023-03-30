@@ -28,7 +28,7 @@
 <meta property="og:description" content="lab1_ch1user_lib h和c，syscall h和c，elf h和c">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-03-10T13:43:37.000Z">
-<meta property="article:modified_time" content="2023-03-25T02:36:37.376Z">
+<meta property="article:modified_time" content="2023-03-30T08:41:24.094Z">
 <meta property="article:author" content="CardiQ">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="ELF">
@@ -184,7 +184,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 10:36:37" itemprop="dateModified" datetime="2023-03-25T10:36:37+08:00">2023-03-25</time>
+                <time title="Modified: 2023-03-30 16:41:24" itemprop="dateModified" datetime="2023-03-30T16:41:24+08:00">2023-03-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
 <li><p><strong>易错：分配缓冲区必须作为全局变量，所有用到其地址作为参数的必须放在函数外部声明</strong></p>
 </li>
 </ul>
-<p>总结：elf.c中自己写一个函数将ctx（已给的elf文件上下文）中的.debug_line段</p>
+<p>总结：elf.c中自己写一个函数将ctx（已给的elf文件上下文）中的.debug_line段读到自建数据结构，再使用</p>
 <h2 id="lab2-ch2"><a href="#lab2-ch2" class="headerlink" title="lab2_ch2"></a>lab2_ch2</h2><p>syscall c，vmm h和c</p>
 <blockquote>
 <p>BONUS</p>
@@ -310,6 +310,9 @@
 <li><strong>易错：按页分配，所以要对va进行ROUNDUP，但后续计算地址用原本地址–混淆则出错misaligned AMO</strong></li>
 </ul>
 <p>总结：app文件中已给出调用，其目的是将新分配空间分配到刚回收的空间，以此为新策略的表现；调用链：app-&gt;（两个better函数）-&gt;userlib-&gt;syscall-&gt;vmm；kernel&#x2F;pmm.c文件中包含了所有对物理内存的初始化、分配和回收的例程，它们的实现非常的简单，感兴趣的读者请对里面的函数进行阅读理解。</p>
+<h2 id="lab3-ch2"><a href="#lab3-ch2" class="headerlink" title="lab3_ch2"></a>lab3_ch2</h2><p>如题，程序通过信号量的增减，控制主进程和两个子进程的输出按主进程，第一个子进程，第二个子进程，主进程，第一个子进程，第二个子进程……这样的顺序轮流输出</p>
+<p>process h-数据结构，userlib c和h-主程序调用的函数，syscall c和h</p>
+<p>主要在syscall完成new，p，v操作的实现</p>
 
     </div>
 
@@ -392,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch1"><span class="nav-number">1.</span> <span class="nav-text">lab1_ch1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch2"><span class="nav-number">2.</span> <span class="nav-text">lab1_ch2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab2-ch2"><span class="nav-number">3.</span> <span class="nav-text">lab2_ch2</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch1"><span class="nav-number">1.</span> <span class="nav-text">lab1_ch1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab1-ch2"><span class="nav-number">2.</span> <span class="nav-text">lab1_ch2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab2-ch2"><span class="nav-number">3.</span> <span class="nav-text">lab2_ch2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lab3-ch2"><span class="nav-number">4.</span> <span class="nav-text">lab3_ch2</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
