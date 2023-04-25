@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png">
+  <link rel="mask-icon" href="https://s1.ax1x.com/2022/10/18/xsSIcq.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="ComputerVision1.Design a feed-forward neural network to implement a regression task on a set of data.1.1 初次：使用最基本的网络、激活函数和损失函数，仅仅设计数据并实现网络，得到输出和图示  python中函数的参数类型分为以下五种：位置参数、默认参数、可变参数（*args）、关键字参数（**a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CV-lab">
+<meta property="og:url" content="http://example.com/2023/04/25/CV-lab/index.html">
+<meta property="og:site_name" content="CardiQ">
+<meta property="og:description" content="ComputerVision1.Design a feed-forward neural network to implement a regression task on a set of data.1.1 初次：使用最基本的网络、激活函数和损失函数，仅仅设计数据并实现网络，得到输出和图示  python中函数的参数类型分为以下五种：位置参数、默认参数、可变参数（*args）、关键字参数（**a">
+<meta property="og:locale">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230323003944178.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230325112131204.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230325124206686.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230326210833880.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230328172912262.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230407213224755.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402101458708.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402111051451.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402112227235.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402120434355.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402131231513.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402223138302.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230403133043638.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230403142843895.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230404102710715.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230403212657421.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230404102259170.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230404000734635.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414101101277.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414023336356.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415150533104.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414024611703.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414102859271.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415150425756.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415151008666.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415150850936.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419110200187.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419110300421.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419171620094.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419185949489.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420001519713.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420171841294.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420174342152.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420200255808.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420204349136.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420210102169.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420211152137.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420212137866.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420213733967.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420234914899.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230421163457113.png">
+<meta property="article:published_time" content="2023-04-25T11:51:47.000Z">
+<meta property="article:modified_time" content="2023-04-25T11:53:38.925Z">
+<meta property="article:author" content="CardiQ">
+<meta property="article:tag" content="lab">
+<meta property="article:tag" content="CV">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230323003944178.png">
+
+<link rel="canonical" href="http://example.com/2023/04/25/CV-lab/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'ch'
+  };
+</script>
+
+  <title>CV-lab | CardiQ</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CardiQ</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人学习日志:项目记录/草稿笔记/引用文档/随笔</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="ch">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/25/CV-lab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://s1.ax1x.com/2022/11/01/xThvNT.jpg#/images/avatar.gif">
+      <meta itemprop="name" content="CardiQ">
+      <meta itemprop="description" content="记录日常学习，贡献小绿点">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CardiQ">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CV-lab
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-04-25 19:51:47 / Modified: 19:53:38" itemprop="dateCreated datePublished" datetime="2023-04-25T19:51:47+08:00">2023-04-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%8D%89%E7%A8%BF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">草稿笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="ComputerVision"><a href="#ComputerVision" class="headerlink" title="ComputerVision"></a>ComputerVision</h2><h3 id="1-Design-a-feed-forward-neural-network-to-implement-a-regression-task-on-a-set-of-data"><a href="#1-Design-a-feed-forward-neural-network-to-implement-a-regression-task-on-a-set-of-data" class="headerlink" title="1.Design a feed-forward neural network to implement a regression task on a set of data."></a>1.Design a feed-forward neural network to implement a regression task on a set of data.</h3><h4 id="1-1-初次：使用最基本的网络、激活函数和损失函数，仅仅设计数据并实现网络，得到输出和图示"><a href="#1-1-初次：使用最基本的网络、激活函数和损失函数，仅仅设计数据并实现网络，得到输出和图示" class="headerlink" title="1.1 初次：使用最基本的网络、激活函数和损失函数，仅仅设计数据并实现网络，得到输出和图示"></a>1.1 初次：使用最基本的网络、激活函数和损失函数，仅仅设计数据并实现网络，得到输出和图示</h4><blockquote>
+<ul>
+<li>python中<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41500249/article/details/102788966">函数的参数类型</a>分为以下五种：位置参数、默认参数、可变参数（*args）、关键字参数（**args）、命名关键字参数</li>
+<li><code>unsqueeze</code>方法是PyTorch中的一个函数，它的作用是在指定位置插入一个维度。在这段代码中，<code>unsqueeze</code>方法是在第二个维度上插入一个维度，将原来的一维张量变成了二维张量。这是因为<code>torch.linspace</code>函数返回的是一维张量，而<code>torch.nn</code>中的大多数函数都需要输入二维张量。</li>
+</ul>
+</blockquote>
+<span id="more"></span>
+
+<ul>
+<li>！每个epoch要save模型；可以尝试将90%的训练集又分为训练集和监督集-避免过拟合&#x2F;局部最优；</li>
+<li>实现交换张量的“列”也就是交换其第1（从0开始）个维度的索引，注意交换张量的“列”不是交换张量的维度（指的是交换第m和第n个维度，在二维的时候即矩阵翻转），两者有很大区别</li>
+</ul>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 创建2D张量</span><br><span class="line">b = torch.arange(0, 9).view([3, 3])</span><br><span class="line">print(b)</span><br><span class="line"># 获取2D张量的第2个维度且索引号为0和1的张量子集(第一列和第二列)</span><br><span class="line">print(torch.index_select(b, dim = 1, index = torch.tensor([0, 1])))</span><br></pre></td></tr></table></figure>
+
+<p>例如，以下代码将创建一个形状为<code>(3, 4)</code>的张量，并将其第1列和第3列交换：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line"></span><br><span class="line">x = torch.randn(3, 4)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"># 交换第1列和第3列</span><br><span class="line">indices = torch.LongTensor([2, 1, 0])</span><br><span class="line">x = torch.index_select(x, 1, indices)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>担忧：对矩阵的一系列操作会引起操作前原矩阵的值的变化而导致计算错误吗，以及其他计算错误</p>
+</li>
+<li><p>设置梯度更新为true的原因–<code>torch.Tensor</code> 是 Pytorch 最主要的库，当设置它的属性 <code>.requires_grad=True</code>，那么就会开始追踪在该变量上的所有操作，而完成计算后，可以调用 <code>.backward()</code> 并自动计算所有的梯度，得到的梯度都保存在属性 <code>.grad</code> 中。？换了种写法</p>
+</li>
+<li><p>pytorch中.t()的意义就是将Tensor进行转置</p>
+</li>
+<li><p>梯度清零的作用是为了避免梯度累加。在PyTorch中，每次反向传播时，梯度会被积累到参数的grad属性中，而不是被替换掉。如果不清零梯度，那么下一次反向传播时，就会把上一次的梯度和这一次的梯度相加，导致计算错误。因此，在每个batch或者每个epoch开始时，需要使用optimizer.zero_grad()或者model.zero_grad()将梯度清零。</p>
+</li>
+<li><p>神经网络中的optimizer是一种优化器，它的目的是找到使损失函数最小化的参数¹²。optimizer可以使用不同的优化算法，例如梯度下降、Adam、LBFGS等¹³⁴。optimizer有一个step()方法，用来更新参数⁴。optimizer可以配合scheduler来调整学习率³。</p>
+</li>
+<li><p>根据网络搜索结果，这段代码的意思是如果没有指定优化器，就使用SGD（随机梯度下降）作为优化器¹²。SGD是一种常用的优化算法，它可以更新参数以最小化损失函数¹⁴。params是需要优化的参数，lr是学习率，batch_size是每次更新参数时使用的样本数量²⁴。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">18.	            if optimizer is None:  </span><br><span class="line">19.	                SGD(params,lr,batch_size)  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>随机梯度下降代码中除以batch_size的原因是为了使损失函数和梯度在不同大小的数据集上可以比较¹²，并且防止权重的幅度过大²³。–<strong>这是因为loss是batch内所有loss相加的结果，也就是batch_size个</strong></p>
+</li>
+<li><p>python中item()方法常用于loss之后，作用：取出单元素张量的元素值并返回该值，保持原元素类型不变。,即：原张量元素为整形，则返回整形，原张量元素为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%B5%AE%E7%82%B9%E5%9E%8B&spm=1001.2101.3001.7020">浮点型</a>则返回浮点型，etc.<strong>注意，不同于items()</strong></p>
+</li>
+</ul>
+<h4 id="1-2-改进"><a href="#1-2-改进" class="headerlink" title="1.2 改进"></a>1.2 改进</h4><ul>
+<li><p>在初次的基础上，得到如下图像输出：</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230323003944178.png" alt="image-20230323003944178"></p>
+</li>
+<li><p>猜测阶梯状拐点原因有下：–！</p>
+<p>loss曲线有一个阶梯状拐点可能有以下原因：</p>
+<ul>
+<li>您的学习率太高，导致梯度下降算法在最小值附近震荡<a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/testing-debugging/metrics/interpretic">1</a><a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/crash-course/reducing-loss/gradient-descent">2</a>。您可以尝试<strong>降低学习率或使用自适应学习率的优化器</strong>。</li>
+<li>您的数据集有噪声或异常值，导致损失函数不平滑<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/64516701/how-to-plot-correctly-loss-curves-for-training-and-validation-sets">3</a>。您<strong>可以尝试清理或标准化您的数据，或使用更鲁棒的损失函数</strong>。</li>
+<li>您的模型过拟合了训练集，导致在验证集上的表现不稳定<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/64516701/how-to-plot-correctly-loss-curves-for-training-and-validation-sets">3</a>。您可以尝试增加<strong>正则化项或使用早停法</strong>来防止过拟合。–不考虑，模型较简单且数据属于同一分布，没有突出过拟合问题</li>
+</ul>
+</li>
+<li><p>另外，关于偏置值b：</p>
+<p>神经网络的偏置值b的维数如何确定，取决于神经网络的输出向量的维数。一般来说，偏置向量必须与输出向量具有相同的维数²。例如，如果神经网络有10个类别，那么偏置向量的维数就是10²。偏置值b可以看作是神经网络中每个节点的<strong>阈值</strong>，它可以调整激活函数的位置和形状¹。偏置值b可以帮助神经网络拟合非线性数据，提高模型的灵活性和准确性¹。</p>
+</li>
+<li><p>纠正了一些先前的不符要求的错误后再调整：生成数据分布改为均匀分布-10到10；batch_size改为4500–因为只有90%为训练数据，lr从0.05改为0.1，epoch改为1300；loss每个epoch算一次；</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230325112131204.png" alt="image-20230325112131204"></p>
+</li>
+<li><p><strong>loss曲线初始下降太慢</strong></p>
+<p>loss曲线初始下降太慢，可以尝试以下方法：–！</p>
+<ul>
+<li>数据归一化（减均值，除方差，或者加入normalization，例如BN、L2 norm等）</li>
+<li>更换<strong>参数初始化方法</strong>（对于CNN，一般用xavier或者msra的初始化方法）</li>
+<li>减小学习率、减小batch size</li>
+</ul>
+<p>更换了W,b初始值为ppt所示</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230325124206686.png" alt="image-20230325124206686"></p>
+</li>
+<li><p>TODO：所有的“？” + 讨论一下a.神经元个数b.激活函数（sigmoid较差，用tanh代替）c.层数＆其他任务要求中的指示 + 附上虚拟环境-即import</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230326210833880.png" alt="image-20230326210833880"></p>
+<p>最后调了参-主要是batchsize的问题和其他对应参数，然后按实验要求设置了改变和记录，最后没有再去更改model记录、画图等细枝末节，最终结果见报告pdf</p>
+<p><strong>实验不足</strong>：未保存模型参数（这次未采用model类的写法，下次一定），未设置训练集中的监督集，未使用optimizer</p>
+</li>
+</ul>
+<hr>
+<p>后记</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7090019768316461070">《pytorch实现前馈神经网络实验（手动实现）》</a><a target="_blank" rel="noopener" href="https://juejin.cn/post/7090019768316461070">1</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/bashendixie5/article/details/110986776">《机器学习笔记 - 前馈神经网络(FFNN)用作回归问题的解决方案》</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/bashendixie5/article/details/110986776">2</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lvguchujiujn/article/details/108265606">《前馈神经网络 手动实现回归模型》</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/lvguchujiujn/article/details/108265606">3</a></li>
+</ol>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ema1997/article/details/107332546">Python函数参数四种类型</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/ema1997/article/details/107332546">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a>。：必选参数、默认参数、可变参数和关键字参数不同类型的参数有不同的调用方式。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">必选参数是指在定义函数时没有给定默认值的参数，它们必须按照位置或者关键字的方式传递给函数</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a>。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x, y</span>):</span><br><span class="line">&gt;<span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 位置方式调用</span></span><br><span class="line">&gt;add(<span class="number">1</span>, <span class="number">2</span>) <span class="comment"># 返回3</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 关键字方式调用</span></span><br><span class="line">&gt;add(x=<span class="number">1</span>, y=<span class="number">2</span>) <span class="comment"># 返回3</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">默认参数是指在定义函数时给定了默认值的参数，它们可以省略或者按照位置或者关键字的方式传递给函数</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a>。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">greet</span>(<span class="params">name=<span class="string">&quot;world&quot;</span></span>):</span><br><span class="line">&gt;<span class="built_in">print</span>(<span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>!&quot;</span>)</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 省略默认参数</span></span><br><span class="line">&gt;greet() <span class="comment"># 输出Hello, world!</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 位置方式调用</span></span><br><span class="line">&gt;greet(<span class="string">&quot;Bing&quot;</span>) <span class="comment"># 输出Hello, Bing!</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 关键字方式调用</span></span><br><span class="line">&gt;greet(name=<span class="string">&quot;Bing&quot;</span>) <span class="comment"># 输出Hello, Bing!</span></span><br></pre></td></tr></table></figure>
+
+<p>可变参数是指在定义函数时使用<code>*</code>符号来表示可以接收任意数量的位置实参<a target="_blank" rel="noopener" href="https://blog.csdn.net/ema1997/article/details/107332546">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a>。它们会被收集到一个元组中，可以在函数内部进行遍历或者操作<a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a>。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">sum</span>(<span class="params">*args</span>):</span><br><span class="line">&gt;total = <span class="number">0</span></span><br><span class="line">&gt;<span class="keyword">for</span> num <span class="keyword">in</span> args:</span><br><span class="line">&gt;total += num</span><br><span class="line">&gt;<span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 调用可变参数，不需要写参数名，只需要写实参值</span></span><br><span class="line">&gt;<span class="built_in">sum</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment"># 返回6</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">sum</span>(<span class="number">4</span>, <span class="number">5</span>) <span class="comment"># 返回9</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">sum</span>() <span class="comment"># 返回0</span></span><br></pre></td></tr></table></figure>
+
+<p>关键字参数是指在定义函数时使用<code>**</code>符号来表示可以接收任意数量的关键字实参<a target="_blank" rel="noopener" href="https://blog.csdn.net/ema1997/article/details/107332546">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a>。它们会被收集到一个字典中，可以在函数内部进行遍历或者操作<a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a>。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">info</span>(<span class="params">**kwargs</span>):</span><br><span class="line">&gt;<span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line">&gt;<span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;key&#125;</span>: <span class="subst">&#123;value&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 调用关键字参数，需要写明每个实参的名称和值，并且名称要与形参一致。</span></span><br><span class="line">&gt;info(name=<span class="string">&quot;Bing&quot;</span>, age=<span class="number">10</span>) <span class="comment"># 输出name: Bing 和 age: 10</span></span><br><span class="line"></span><br><span class="line">&gt;info(color=<span class="string">&quot;blue&quot;</span>, size=<span class="string">&quot;large&quot;</span>) <span class="comment"># 输出color: blue 和 size: large</span></span><br><span class="line"></span><br><span class="line">&gt;info() <span class="comment"># 不输出任何内容</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">除此之外，还有一种特殊类型的形参叫做限定位置形参（也叫强制位置形参），它们是指在定义函数时使用<code>/</code>符号来表示只能按照位置方式传递的形参</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hardworking666/article/details/111709764">2</a><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/57726430">3</a>。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">pow</span>(<span class="params">x, y, /</span>):</span><br><span class="line">&gt;<span class="keyword">return</span> x ** y</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 只能按照位置方式调用，不能使用关键字方式。</span></span><br><span class="line">&gt;<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">3</span>) <span class="comment"># 返回8</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">pow</span>(x=<span class="number">2</span>, y=<span class="number">3</span>) <span class="comment"># 报错TypeError: pow() got some positional-only arguments passed as keyword arguments: &#x27;x,y</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<h3 id="2-基于卷积神经网络的-CIFAR-10-数据集分类"><a href="#2-基于卷积神经网络的-CIFAR-10-数据集分类" class="headerlink" title="2.基于卷积神经网络的 CIFAR-10 数据集分类"></a>2.基于卷积神经网络的 CIFAR-10 数据集分类</h3><h4 id="2-1-初次，熟悉CUDA，建立粗糙网络"><a href="#2-1-初次，熟悉CUDA，建立粗糙网络" class="headerlink" title="2.1 初次，熟悉CUDA，建立粗糙网络"></a>2.1 初次，熟悉CUDA，建立粗糙网络</h4><blockquote>
+<p>现在有两个Python</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230328172912262.png" alt="image-20230328172912262"></p>
+<p><del>第二个anaconda在pycharm的环境变量，每次生成新项目默认–3.7</del>–现在没了，新的python如下</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230407213224755.png" alt="image-20230407213224755"></p>
+<p>第一个是建立虚拟环境的默认解释器、也在系统环境变量中–3.8</p>
+</blockquote>
+<ul>
+<li>装了CUDA和cudnn在E盘，也重新装了torch（之前是cpu版），实验二可以使用GPU；之后若要用anaconda，可改解释器实现。–教程见课程收藏夹</li>
+<li>注意<strong>torch和torchvision都要是GPU版本</strong>的–torch教程见课程收藏夹</li>
+<li>重装了anaconda3-py3.10，可执行文件E:\Anaconda3\Scripts\conda.exe，环境E:\Anaconda3\envs\computervision\convolutionalnet</li>
+</ul>
+<blockquote>
+<p>pytorch是一个基于python的深度学习框架，它继承了torch的自动求导技术，但是使用了更灵活和直观的动态图方式来构建模型。12</p>
+<p>python代码中的都是pytorch，尽管写的是torch</p>
+<p>torch是一个基于lua的深度学习库，它使用了静态图方式来构建模型，并且提供了很多底层的操作和优化算法。2</p>
+</blockquote>
+<blockquote>
+<p>在计算机视觉中，H、W 和 C 分别表示图像的高度、宽度和通道数。例如，一个形状为 <code>(32, 32, 3)</code> 的张量表示一个大小为 32x32 像素，3 个通道（RGB）的图像。其中，第一个维度是图像的高度，第二个维度是图像的宽度，第三个维度是图像的通道数。在 PyTorch 中，可以使用 <code>tensor.shape</code> 属性获取张量的形状。</p>
+<p>transformes.ToTensor()将数据类型从形状为 <code>(H x W x C)</code> 转换为形状为 <code>(C x H x W)</code> 的主要原因是，这是神经网络处理图像数据的标准格式。在这个格式中，第一个维度是通道数，第二个和第三个维度是图像的高度和宽度。这种格式的好处是，它可以更好地利用卷积神经网络（CNN）中的卷积操作的并行性。此外，这种格式还可以更好地利用 GPU 的并行性，从而提高训练速度。</p>
+</blockquote>
+<ul>
+<li>关于Python中的类函数、静态函数和实例函数，以及@的意义</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">funA</span>(<span class="params">desA</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;It&#x27;s funA&quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">funB</span>(<span class="params">desB</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;It&#x27;s funB&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@funB  </span><span class="comment"># --&gt;赋值参数、运行，相当于funB(funA(funC))，输出funA、funB</span></span><br><span class="line"><span class="meta">@funA</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">funC</span>():</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;It&#x27;s funC&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出通道数是卷积神经网络设计的一种固定参数，但是这个参数的选择是有一定的原则的。在卷积神经网络中，每个卷积核都会生成一个输出通道，因此输出通道数等于卷积核的数量。在设计卷积神经网络时，需要根据任务的复杂度和数据集的大小来选择合适的卷积核数量和输出通道数。123</p>
+</blockquote>
+<ul>
+<li>输入通道数是m卷积核通道数是m，卷积核有n个输出通道数就是n</li>
+</ul>
+<blockquote>
+<p>在PyTorch中，使用model.cuda()将模型加载到GPU上，但是这并不意味着所有操作都在GPU上执行。只有在调用model.forward()时，才会将数据传输到GPU上进行计算。¹²³</p>
+</blockquote>
+<blockquote>
+<p>__main__方法作为Python编程环境的程序入口，可以定义一些变量，这些变量默认为全局变量，可供其他方法使用。</p>
+</blockquote>
+<ul>
+<li><p>初次–LeNet-5+batchnorm</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># parameter1</span></span><br><span class="line">    epochs = <span class="number">30</span></span><br><span class="line">    batch_size = <span class="number">16</span></span><br><span class="line">    train_valid_size = <span class="number">0.1</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># parameter2</span></span><br><span class="line">    optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)</span><br><span class="line">    valid_loss_min = np.Inf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>output</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402101458708.png" alt="image-20230402101458708"></p>
+</li>
+</ul>
+<h4 id="2-2-LeNet-5-amp-batchnorm–-gt-新初始化原为-0-5-0-5-0-5-数据增强"><a href="#2-2-LeNet-5-amp-batchnorm–-gt-新初始化原为-0-5-0-5-0-5-数据增强" class="headerlink" title="2.2 LeNet-5&amp;batchnorm–&gt;+新初始化原为(0.5,0.5,0.5)+数据增强"></a>2.2 LeNet-5&amp;batchnorm–&gt;+新初始化原为(0.5,0.5,0.5)+数据增强</h4><ul>
+<li><p>数据初始化更改–参考一些文献中常设置的normalize初始化数值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">transform_train = transforms.Compose([</span><br><span class="line">        transforms.Pad(<span class="number">4</span>),</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize((<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>), (<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>)),</span><br><span class="line">        transforms.RandomHorizontalFlip(),</span><br><span class="line">        transforms.RandomGrayscale(),</span><br><span class="line">        transforms.RandomCrop(<span class="number">32</span>, padding=<span class="number">4</span>),</span><br><span class="line">])</span><br><span class="line">    transform_test = transforms.Compose([</span><br><span class="line">        transforms.ToTensor(),  <span class="comment"># 其他类型(形状为H x W x C)数据范围是[0, 255] 到一个 Torch.FloatTensor，其形状 (C x H x W) 在 [0.0, 1.0] 范围内</span></span><br><span class="line">        transforms.Normalize((<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>), (<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>))  <span class="comment"># 均值分为三个通道</span></span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加数据增强-裁剪变换transformsTODO</p>
+</li>
+</ul>
+<blockquote>
+<p>nn.Sequential 是 PyTorch 中的一个类，它可以用来构建一些简单的神经网络。它是一个容器，可以按照构造函数中传递的顺序将模块添加到其中。</p>
+</blockquote>
+<ul>
+<li><p>效果不佳，考虑是否保留</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402111051451.png" alt="image-20230402111051451"></p>
+</li>
+</ul>
+<p><strong>TODO</strong></p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+ablation test：–去掉数据增强，有所提升</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402112227235.png" alt="image-20230402112227235"></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<del>*为什么GPU利用率浮动而且平均较低？为什么LeNet最后输出不是120而是16×120？</del></p>
+</li>
+</ul>
+<h4 id="2-3-类VGG"><a href="#2-3-类VGG" class="headerlink" title="2.3 类VGG"></a>2.3 类VGG</h4><blockquote>
+<p>在卷积神经网络中，nn.Flatten的作用是将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过渡1。在卷积神经网络中，卷积层的输出是一个四维张量，即(batch_size, channels, height, width)，而全连接层的输入是一个二维张量，即(batch_size, features)。因此，需要将卷积层的输出“压平”成一个二维张量，然后再输入到全连接层中。</p>
+</blockquote>
+<ul>
+<li>在上述基础上更改Net结构，类似VGG，参数有所不同</li>
+<li>在上述基础上改了droupout，从0.3改为0.4</li>
+</ul>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402120434355.png" alt="image-20230402120434355"></p>
+<p><strong>TODO</strong></p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+学习率更改-采用scheduler</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402131231513.png" alt="image-20230402131231513"></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+添加数据增强–去掉进行尝试：非常过拟合</p>
+</li>
+</ul>
+<h4 id="2-4-类ResNet"><a href="#2-4-类ResNet" class="headerlink" title="2.4 类ResNet"></a>2.4 类ResNet</h4><p><strong>TODO</strong></p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+作分类准确率提升曲线–关于存储数据到txt用于画图，在gpu还是cpu</p>
+<p>画图数据文件保存不成功，改为手动放入数据</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<del>增加一个inception模块</del></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+增加一个residual模块–不愿再看</p>
+<ul>
+<li>resnet类为常规卷积网络，调用basicblock为实质</li>
+<li>basicblock参数除了构建block网络结构，主要服务于受由通道数planes和步长stride决定的downsample</li>
+<li>downsample用于在basicblock中的关键部分-残差求和-时更正size以便相加</li>
+<li>block1个</li>
+</ul>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230402223138302.png" alt="image-20230402223138302"></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+batch_size从16改为24–无用，改回</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+添加数据增强–去掉进行尝试：非常过拟合</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+改了<del>学习率</del>验证集占比0.1为0.01+进行两轮</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230403133043638.png" alt="image-20230403133043638"></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+采用resnet使网络更深但不要过拟合，多训练一轮：通过载入模型，由此进行更多次再看结果</p>
+<p>第二轮</p>
+</li>
+</ul>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230403142843895.png" alt="image-20230403142843895"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230404102710715.png"></p>
+<p>第三轮–已出现过拟合</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230403212657421.png" alt="image-20230403212657421"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230404102259170.png" alt="image-20230404102259170"></p>
+<blockquote>
+<p>在 Python 中，如果在循环中使用 list.append() 方法，最终的 list 只保留最后一次循环的结果。这是因为 list.append() 方法的实质是引用被添加的对象，并没有拷贝这个对象，当被引用的对象发生改变时列表中的值也会发生改变，所以就有可能造成重复或者全为空。123</p>
+<p>如果您想要在循环中保留所有的结果，可以使用列表推导式或者 map 函数来实现。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;a = [1, 2, 3, 4]</span><br><span class="line">&gt;b = [i for i in a]</span><br></pre></td></tr></table></figure>
+
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;a = [1, 2, 3, 4]</span><br><span class="line">&gt;b = map(lambda x:x, a)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>用copy解决不行，需要用deepcopy</strong></li>
+<li><input checked="" disabled="" type="checkbox"> <del>模型load后效率大降低，明明原代码重复运行也是可以的–数据正规化时的参数未改</del></li>
+<li><input checked="" disabled="" type="checkbox"> 增加leakyrelu</li>
+</ul>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230404000734635.png" alt="image-20230404000734635"></p>
+<p><strong>报告内容之网络介绍</strong></p>
+<p>在神经网络的实验报告中，介绍网络模型结构通常需要包括以下内容：</p>
+<ul>
+<li>网络的输入和输出</li>
+<li>网络的层数和每层的神经元数</li>
+<li>每层的激活函数</li>
+<li>每层的权重和偏置</li>
+</ul>
+<h3 id="3-基于剪枝算法的深度神经网络压缩"><a href="#3-基于剪枝算法的深度神经网络压缩" class="headerlink" title="3.基于剪枝算法的深度神经网络压缩"></a>3.基于剪枝算法的深度神经网络压缩</h3><ul>
+<li><p>前序图像识别分类任务，运行三种网络：LeNet-5，VGG-16，VGG-16+residue，处理图片是四维N×C×H×W</p>
+<p>在第二种基础上进行剪枝–首先再训练半轮尝试提高准确度，选择第二种是因为其网络结构较简单便于剪枝</p>
+<blockquote>
+<p>*ICLR 2017《Pruning Filters for Efficient ConvNets》</p>
+<p>主要介绍了一种卷积神经网络的通道剪枝策略。该策略通过对卷积层的滤波器进行剪枝，从而减少了模型的计算和参数存储成本，同时保持了原始准确性。</p>
+<p>该论文的作者通过实验表明，他们的方法可以在不损失准确性的情况下，将模型的计算和参数存储成本分别降低了35%和50%。</p>
+</blockquote>
+<p>首先对选择的网络模型再训练半轮尝试提高准确度</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414101101277.png" alt="image-20230414101101277"></p>
+</li>
+<li><p>关于model操作 .children只列出外层，.model会逐层解开</p>
+</li>
+<li><p>中间层可视化–采用了256核的中间层而非最后一层</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 之后用512层再做：注意改每行图片个数</li>
+</ul>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414023336356.png" alt="image-20230414023336356"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415150533104.png" alt="image-20230415150533104"></p>
+</li>
+<li><p>压缩模型</p>
+<ul>
+<li><p>第一次效果不好</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 1.保存不成功，循环出边界</li>
+<li><input checked="" disabled="" type="checkbox"> 2.x设为85个y实际上是86（85还未+1（90%），但超界限多了一个共86个）个，删了一个y&#x3D;10，之后实际得补的是x；现在权宜使用记录数组画图，之后仍用原始数据画图；</li>
+<li><input checked="" disabled="" type="checkbox"> 3.初始准确率本为90现为88–开始的一次未加入手动记录数组</li>
+<li><input checked="" disabled="" type="checkbox"> 4.下降太陡是否用abs–改变微小</li>
+<li><input checked="" disabled="" type="checkbox"> 5.之后用512层再做</li>
+<li><input checked="" disabled="" type="checkbox"> 6.<del>改为k从1到p-1</del></li>
+</ul>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414024611703.png" alt="image-20230414024611703"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230414102859271.png" alt="image-20230414102859271"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415150425756.png" alt="image-20230415150425756"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415151008666.png" alt="image-20230415151008666"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230415150850936.png" alt="image-20230415150850936"></p>
+</li>
+</ul>
+</li>
+<li><p>其他</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <del>整理代码中！和？</del></li>
+<li><input checked="" disabled="" type="checkbox"> 注意写报告参照论文，<del>例如“xxx的对比”小标题</del></li>
+<li><input checked="" disabled="" type="checkbox"> 画图有坐标</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-深度神经网络后门攻击"><a href="#4-深度神经网络后门攻击" class="headerlink" title="4.深度神经网络后门攻击"></a>4.深度神经网络后门攻击</h3><ul>
+<li><p>尝试pattern-based trigger</p>
+<p>参考了论文，但其代码仓库过于晦涩</p>
+<p>尝试博客</p>
+<ul>
+<li><p>设法“投毒”–需要切断反向传播、传值要detach分离张量和它的ndarray、张量的特定位置值设定</p>
+<p>先设置投毒颜色为白色255</p>
+<ul>
+<li>未经transforms的</li>
+</ul>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419110200187.png" alt="image-20230419110200187"></p>
+<ul>
+<li><p>经过transforms的–有Pad等等</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419110300421.png" alt="image-20230419110300421"></p>
+</li>
+<li><p>在左上角也加了pattern</p>
+</li>
+</ul>
+</li>
+<li><p>本实验data将数据以成对（对中每个是一个batchsize，一对中一个是data一个是label）的方式载入</p>
+</li>
+</ul>
+</li>
+<li><p>如何改特定类别的数据和label</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个函数，用于修改数据集中特定类别的数据</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">modify_dataset</span>(<span class="params">dataset, class_index</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dataset)):</span><br><span class="line">        <span class="keyword">if</span> dataset[i][<span class="number">1</span>] == class_index:</span><br><span class="line">            <span class="comment"># 修改图像</span></span><br><span class="line">            <span class="comment"># dataset[i][0] = ...</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载CIFAR-10数据集</span></span><br><span class="line">transform = transforms.Compose(</span><br><span class="line">    [transforms.ToTensor(),</span><br><span class="line">     transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))])</span><br><span class="line">trainset = torchvision.datasets.CIFAR10(root=<span class="string">&#x27;./data&#x27;</span>, train=<span class="literal">True</span>,</span><br><span class="line">                                        download=<span class="literal">True</span>, transform=transform)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改数据集中第3类的数据</span></span><br><span class="line">modify_dataset(trainset, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>原Net结构中最后一层“分类”通过转为10维输出实现</li>
+<li>最后采用简单的给label赋值为0（也就是airplane）实现</li>
+</ul>
+</li>
+<li><p>todolist</p>
+<ul>
+<li><p>毒化操作放外面不行，必须在遍历loader时做</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+做毒化–train＆test–仅作<strong>九类</strong>、R–必须放在遍历内部</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 关于valid集的改动</li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+更改R：[0，10%，33%，50%]</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 训练：利用原始的预训练模型进行训练-达到联合数据</li>
+<li><input checked="" disabled="" type="checkbox"> 测试–分为<strong>污染</strong>和<strong>未污染</strong></li>
+<li><input checked="" disabled="" type="checkbox"> <del>还未在独立test文件添加poison test</del></li>
+<li><input checked="" disabled="" type="checkbox"> R的实现要参考sampler并计数实现<ul>
+<li><input checked="" disabled="" type="checkbox"> 改为valid和train均衡分布</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+记录结果–参照论文画图分析</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+报告写网络结构–参照论文表格</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+添加参考文献</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+上传前删除大文件</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+画图改了真实数据</p>
+<p><strong>每次训练改模型文件名</strong></p>
+<table>
+<thead>
+<tr>
+<th>R</th>
+<th>accuracy-t</th>
+<th>accuracy-p</th>
+<th>loss-p</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>90%</td>
+<td>9%</td>
+<td></td>
+</tr>
+<tr>
+<td>1%</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5%</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10%</td>
+<td><del>58%</del>、<del>46%</del>、<del>88%</del>、90%还是交88%的</td>
+<td><del>94%</del>、<del>94%</del>、<del>100%</del>、100%</td>
+<td></td>
+</tr>
+<tr>
+<td>33%</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>50%</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419171620094.png" alt="image-20230419171620094"></p>
+<hr>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230419185949489.png" alt="image-20230419185949489"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420001519713.png" alt="image-20230420001519713"></p>
+</li>
+</ul>
+</li>
+<li><p>问题：</p>
+<ul>
+<li>联合训练：可能指的就是R</li>
+</ul>
+</li>
+<li><p><del>更改了标记方式–小到大</del></p>
+<ul>
+<li><p>第一次训练后，攻击成功率高但分类准确率非常低</p>
+<ul>
+<li>可能数据攻击的有问题–已改正，使train集和valid集平分R</li>
+<li>尝试再训练干净数据5轮–有提升，但新的问题是攻击率过高，尝试缩小污染–先数据合起来训练效果比较好，但是攻击率到了100%所以<strong>改为缩小污染，并自动合并数据，再次从头开始调R NOW</strong></li>
+<li>之后再<strong>正式改污染方式，取个不变量做个对比 NOW</strong></li>
+</ul>
+<p>1.0.1 20+10</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420171841294.png" alt="image-20230420171841294"></p>
+<p>2.0.33 10+5–还不行就<strong>再调低</strong>，再改为<strong>更小污染率（小污染率的时候更小训练poison-epochs</strong>）再试</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420174342152.png" alt="image-20230420174342152"></p>
+<p>3.0.5 10+3</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420200255808.png" alt="image-20230420200255808"></p>
+<p><strong>4.0.001 1+10</strong></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420204349136.png" alt="image-20230420204349136"></p>
+<p>5.0.01 1+5</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420210102169.png" alt="image-20230420210102169"></p>
+<p>1+10</p>
+<p>暂无</p>
+<p>6.0.1 1+5</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420211152137.png" alt="image-20230420211152137"></p>
+<p>7.0.33 1+5</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420212137866.png" alt="image-20230420212137866"></p>
+<p>8.0.5 1+5</p>
+<p>结果不好</p>
+<p>3+1</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420213733967.png" alt="image-20230420213733967"></p>
+<p>9.画点0.001 1+5</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230420234914899.png" alt="image-20230420234914899"></p>
+<p>10.加左上角0.001 1+5</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230421163457113.png" alt="image-20230421163457113"></p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lab/" rel="tag"># lab</a>
+              <a href="/tags/CV/" rel="tag"># CV</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/10/CurriculumDesign-OS/" rel="prev" title="CurriculumDesign-OS">
+      <i class="fa fa-chevron-left"></i> CurriculumDesign-OS
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ComputerVision"><span class="nav-number">1.</span> <span class="nav-text">ComputerVision</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Design-a-feed-forward-neural-network-to-implement-a-regression-task-on-a-set-of-data"><span class="nav-number">1.1.</span> <span class="nav-text">1.Design a feed-forward neural network to implement a regression task on a set of data.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%88%9D%E6%AC%A1%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%BD%91%E7%BB%9C%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BB%85%E4%BB%85%E8%AE%BE%E8%AE%A1%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%BE%97%E5%88%B0%E8%BE%93%E5%87%BA%E5%92%8C%E5%9B%BE%E7%A4%BA"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 初次：使用最基本的网络、激活函数和损失函数，仅仅设计数据并实现网络，得到输出和图示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%94%B9%E8%BF%9B"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 改进</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9F%BA%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84-CIFAR-10-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">2.基于卷积神经网络的 CIFAR-10 数据集分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%88%9D%E6%AC%A1%EF%BC%8C%E7%86%9F%E6%82%89CUDA%EF%BC%8C%E5%BB%BA%E7%AB%8B%E7%B2%97%E7%B3%99%E7%BD%91%E7%BB%9C"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 初次，熟悉CUDA，建立粗糙网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-LeNet-5-amp-batchnorm%E2%80%93-gt-%E6%96%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8E%9F%E4%B8%BA-0-5-0-5-0-5-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 LeNet-5&amp;batchnorm–&gt;+新初始化原为(0.5,0.5,0.5)+数据增强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E7%B1%BBVGG"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 类VGG</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E7%B1%BBResNet"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 类ResNet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9F%BA%E4%BA%8E%E5%89%AA%E6%9E%9D%E7%AE%97%E6%B3%95%E7%9A%84%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.3.</span> <span class="nav-text">3.基于剪枝算法的深度神经网络压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B7%B1%E5%BA%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%90%8E%E9%97%A8%E6%94%BB%E5%87%BB"><span class="nav-number">1.4.</span> <span class="nav-text">4.深度神经网络后门攻击</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CardiQ"
+      src="https://s1.ax1x.com/2022/11/01/xThvNT.jpg#/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">CardiQ</p>
+  <div class="site-description" itemprop="description">记录日常学习，贡献小绿点</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CardiQ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CardiQ" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/563397455@qq.com" title="E-Mail → 563397455@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CardiQ</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
